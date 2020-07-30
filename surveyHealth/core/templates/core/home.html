@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add your logo to the survey title., jQuery Survey Library Example</title>
+        {% load static %}
+        <meta name="viewport" content="width=device-width"/>
+        <script src="https://unpkg.com/jquery"></script>
+        <script src="https://surveyjs.azureedge.net/1.7.24/survey.jquery.js"></script>
+        <link href="https://surveyjs.azureedge.net/1.7.24/modern.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+
+    </head>
+    <body>
+
+        <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+        <div id="surveyResult"></div>
+        
+        <form action="/saveForm/" method="post" class="hidden" id="form">
+            {% csrf_token %}
+            <div class="user"></div>
+            <input type="submit" class="btn btn-primary btn-block py-2" value="Send">
+        </form>
+        <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
+
+    </body>
+</html>
