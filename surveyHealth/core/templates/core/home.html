@@ -8,21 +8,48 @@
         <script src="https://unpkg.com/jquery"></script>
         <script src="https://surveyjs.azureedge.net/1.7.24/survey.jquery.js"></script>
         <link href="https://surveyjs.azureedge.net/1.7.24/modern.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
 
     </head>
     <body>
 
+        {% if 'ok' in request.GET %}
+            <div class="response">
+                <p style="color:green;"><b>Your results has been correctly saved.</b></p>
+            </div>
+        {% endif %}
+        
+        {% if 'fail' in request.GET %}
+            <div class="response">
+                <p style="color:red;"><b>Something went wrong, please try again.</b></p>
+            </div>
+        {% endif %}
+
+        {% if 'alreadyUsed' in request.GET %}
+            <div class="response">
+                <p style="color:red;"><b>The email is already used, please try again.</b></p>
+            </div>
+        {% endif %}
+
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div>
         
-        <form action="/saveForm/" method="post" class="hidden" id="form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label for="exampleFormControlFile1">Example file input</label>
-            <input type="file" class="form-control-file" name="image">
-            <div class="user"></div>
-            <input type="submit" class="btn btn-primary btn-block py-2" value="Send">
-        </form>
+        <br>
+        <div style="display:flex;justify-content:center;text-align:center;">
+            <form action="/saveForm/" method="post" class="hidden form-group" id="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="image" style="font-size:25px;"><b>Upload a photo of your sign</b></label>
+                    <br>
+                    <small>Please make sure it is readable</small>
+                    <br><br>
+                    <input type="file" class="form-control-file" name="image">
+                </div>
+                <div class="user" hidden></div>
+                <input type="submit" class="btn btn-primary" value="Send">
+            </form>
+        </div>
         <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
 
     </body>

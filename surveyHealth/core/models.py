@@ -2,9 +2,9 @@ from django.db import models
 
 # Create your models here.
 class UserSurvey(models.Model):
-    name = models.CharField(max_length=200, blank=False, verbose_name="Name")
-    email = models.EmailField(verbose_name="Email", blank=False)
-    image = models.ImageField(blank=False, upload_to='usersSign', verbose_name="Image")
+    name = models.CharField(max_length=200, blank=False, verbose_name="Name", unique=True)
+    email = models.EmailField(verbose_name="Email", blank=False, unique=True)
+    image = models.ImageField(blank=False, upload_to='usersSign', verbose_name="Image", unique=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Date and time of creation")
     updated = models.DateTimeField(auto_now=True, verbose_name="Date and time of last change")
 

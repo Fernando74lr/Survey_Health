@@ -3,11 +3,10 @@ Survey
     .applyTheme("modern");
 
 var json = {
-    "title": "Survey Title&Logo demo",
-    "description": "Please take look at the survey title and logo. Test the settings on the right panel ->",
-    "logo": "https://surveyjs.io/favicon.ico",
-    "logoWidth": 60,
-    "logoHeight": 60,
+
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Escudobuappositivo2.png",
+    "logoWidth": 250,
+    "logoHeight": 250,
     "questions": [
         {
             type: "html",
@@ -16,8 +15,8 @@ var json = {
             "name": "name",
             "type": "text",
             "inputType": "text",
-            "title": "Your complete name:",
-            "placeHolder": "Test User",
+            "title": "Name:",
+            "placeHolder": "Your complete name",
             "isRequired": true
         }, {
             "name": "email",
@@ -34,7 +33,7 @@ var json = {
         }, {
             type: "radiogroup",
             name: "consent",
-            title: "Do you accept consent?",
+            title: "Do you accept the consent?",
             isRequired: true,
             choices: [
                 "Yes", "No"
@@ -42,7 +41,7 @@ var json = {
             colCount: 0
         }, {
             type: "html",
-            html: "<b style='font-size:30px'>Thank you for your time. We aprecciate it.</b>",
+            html: "<b style='font-size:30px'>Thanks for your time. We aprecciate it.</b>",
             visibleIf: "{consent}='No'"
         }, {
             type: "dropdown",
@@ -66,9 +65,6 @@ survey
             <input name='name' type='text' value='${result.data.name}' readonly/>
             <input name='email' type='email' value='${result.data.email}' readonly/>
         `);
-        /*document
-            .querySelector('#surveyResult')
-            .textContent = "Your ID is:\n" + JSON.stringify(result.data, null, 3);*/
     });
 
 $("#surveyElement").Survey({model: survey});
