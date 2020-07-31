@@ -16,8 +16,10 @@
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div>
         
-        <form action="/saveForm/" method="post" class="hidden" id="form">
+        <form action="/saveForm/" method="post" class="hidden" id="form" enctype="multipart/form-data">
             {% csrf_token %}
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" name="image">
             <div class="user"></div>
             <input type="submit" class="btn btn-primary btn-block py-2" value="Send">
         </form>
