@@ -6,7 +6,7 @@ from django.core.files.base import ContentFile
 # Create your views here.
 def home(request):
     return render(request, 'core/home.html')
-#user = User.objects.filter(name='ImHarvol').exists()
+
 def saveForm(request):
     if request.method == 'POST':
         print("SUBMITED")
