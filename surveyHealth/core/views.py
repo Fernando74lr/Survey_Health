@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserSurvey
-from django.core.files.base import ContentFile
+import json
 
 # Create your views here.
 def home(request):
     return render(request, 'core/home.html')
+
+def resultsInfo(request):
+    users = UserSurvey.objects.all()
+
+    emails = ''
+    for user in users:
+        emails+= str(user.email) + ','
+    
+    return render(request, 'core/results.html', {'emails' : emails})
 
 def saveForm(request):
     if request.method == 'POST':

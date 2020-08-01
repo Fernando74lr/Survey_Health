@@ -1,3 +1,7 @@
+let admin = () => location.replace(`${window.origin}/admin`);
+let results = () => location.replace(`${window.origin}/results`);
+let home = () => location.replace(window.origin.replace("results",""));
+
 Survey
     .StylesManager
     .applyTheme("modern");

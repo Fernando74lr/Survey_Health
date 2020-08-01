@@ -5,12 +5,21 @@
         <title>Health Survey</title>
         {% load static %}
         <meta name="viewport" content="width=device-width"/>
-        <link rel="icon" href="{% static 'core/img/icon_2.ico' %}">
+        {% if not 'admin' in request.GET %}
+            <link rel="icon" href="{% static 'core/img/icon_2.ico' %}">
+        {% endif %}
+        <!-- SurveyJs -->
         <script src="https://unpkg.com/jquery"></script>
         <script src="https://surveyjs.azureedge.net/1.7.24/survey.jquery.js"></script>
         <link href="https://surveyjs.azureedge.net/1.7.24/modern.css" type="text/css" rel="stylesheet"/>
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Local CSS -->
         <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+        <!-- ChartJs -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
     </head>
     <body>
@@ -33,6 +42,12 @@
             </div>
         {% endif %}
 
+        <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
+            <button type="button" onclick="admin()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Admin  <i class="fa fa-user" style="font-size:18px;"></i></button>
+            <br>
+            <button type="button" onclick="results()" class="btn btn-success" style="border-radius:1.214em!important;text-decoration:none!important;">Results  <i class="fa fa-inbox" style="font-size:18px;"></i></button>
+        </div>
+
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div>
         
@@ -48,7 +63,7 @@
                     <input type="file" class="form-control-file" name="image">
                 </div>
                 <div class="user" hidden></div>
-                <input type="submit" class="btn btn-primary" value="Send" style="background-color:#254a67!important;border-color:#254a67!important;">
+                <input type="submit" class="btn btn-primary" value="    Send    " style="background-color:#254a67!important;border-color:#254a67!important;border-radius:1.214em!important;">
             </form>
         </div>
         <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
