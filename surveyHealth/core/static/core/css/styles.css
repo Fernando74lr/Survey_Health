@@ -1,5 +1,5 @@
 .hidden {
-    display: none
+    display: none;
 }
 
 .sv-completedpage {
@@ -11,7 +11,7 @@
 }
 
 .sv-footer__complete-btn {
-    background-color: #254a67!important
+    background-color: #254a67!important;
 }
 
 .response,

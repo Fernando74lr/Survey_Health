@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Add your logo to the survey title., jQuery Survey Library Example</title>
+        <title>Health Survey</title>
         {% load static %}
         <meta name="viewport" content="width=device-width"/>
+        <link rel="icon" href="{% static 'core/img/icon_2.ico' %}">
         <script src="https://unpkg.com/jquery"></script>
         <script src="https://surveyjs.azureedge.net/1.7.24/survey.jquery.js"></script>
         <link href="https://surveyjs.azureedge.net/1.7.24/modern.css" type="text/css" rel="stylesheet"/>
@@ -47,7 +48,7 @@
                     <input type="file" class="form-control-file" name="image">
                 </div>
                 <div class="user" hidden></div>
-                <input type="submit" class="btn btn-primary" value="Send">
+                <input type="submit" class="btn btn-primary" value="Send" style="background-color:#254a67!important;border-color:#254a67!important;">
             </form>
         </div>
         <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
