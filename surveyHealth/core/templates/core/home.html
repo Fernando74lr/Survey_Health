@@ -42,31 +42,24 @@
             </div>
         {% endif %}
 
-        <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
+        <!--<div class="buttons_panel center" style="margin-top:10px;">
             <button type="button" onclick="admin()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Admin  <i class="fa fa-user" style="font-size:18px;"></i></button>
             <br>
             <button type="button" onclick="results()" class="btn btn-success" style="border-radius:1.214em!important;text-decoration:none!important;">Results  <i class="fa fa-inbox" style="font-size:18px;"></i></button>
-        </div>
+        </div>-->
 
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div>
         
         <br>
-        <div style="display:flex;justify-content:center;text-align:center;">
+        <div class="center">
             <form action="/saveForm/" method="post" class="hidden form-group" id="form" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="image" style="font-size:25px;"><b>Upload a photo of your sign</b></label>
-                    <br>
-                    <small>Please make sure it is readable</small>
-                    <br><br>
-                    <input type="file" class="form-control-file" name="image">
-                </div>
-                <div class="user" hidden></div>
-                <input type="submit" class="btn btn-primary" value="    Send    " style="background-color:#254a67!important;border-color:#254a67!important;border-radius:1.214em!important;">
+                <div class="user"></div>
+                <input type="submit" id="send" class="btn btn-primary" value="    Send    ">
             </form>
         </div>
-        <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
+        <script type="text/javascript" src="{% static 'core/js/scripts.js' %}"></script>
 
     </body>
 </html>

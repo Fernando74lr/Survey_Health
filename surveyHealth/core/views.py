@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserSurvey
+import base64
 import json
 
 # Create your views here.
@@ -21,11 +22,16 @@ def saveForm(request):
         print("SUBMITED")
         name = request.POST['name']
         email = request.POST['email']
-        image = request.FILES['image']
+        imgstring = request.POST['image'].replace('data:image/jpeg;base64,', '')
+
+        imgdata = base64.b64decode(imgstring)
+        filename = 'usersSign/sign' + name[0] + '.jpg'  # I assume you have a way of picking unique filenames
+        with open('media/'+filename, 'wb') as f:
+            f.write(imgdata)
 
         if not UserSurvey.objects.filter(email=email).exists():
             try:
-                user = UserSurvey(name=name, email=email, image=image)
+                user = UserSurvey(name=name, email=email, image=filename)
                 user.save()
                 return redirect(reverse('home') + '?ok')
             except:
