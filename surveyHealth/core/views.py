@@ -22,10 +22,12 @@ def saveForm(request):
         print("SUBMITED")
         name = request.POST['name']
         email = request.POST['email']
-        imgstring = request.POST['image'].replace('data:image/jpeg;base64,', '')
+        image_base64 = request.POST['image'].replace('data:image/jpeg;base64,', '')
 
-        imgdata = base64.b64decode(imgstring)
-        filename = 'usersSign/sign' + name[0] + '.jpg'  # I assume you have a way of picking unique filenames
+        initialsName = name.split(' ')
+        
+        imgdata = base64.b64decode(image_base64)
+        filename = 'usersSign/sign' + initialsName[0] + initialsName[1][0] + initialsName[2][0] + '.jpg'  # I assume you have a way of picking unique filenames
         with open('media/'+filename, 'wb') as f:
             f.write(imgdata)
 
