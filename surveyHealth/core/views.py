@@ -22,7 +22,7 @@ def saveForm(request):
         print("SUBMITED")
         name = request.POST['name']
         email = request.POST['email']
-        image_base64 = request.POST['image'].replace('data:image/jpeg;base64,', '')
+        image_base64 = request.POST['image'].replace('data:image/png;base64,', '')
 
         initialsName = name.split(' ')
         
