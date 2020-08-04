@@ -30,12 +30,13 @@ var json = {
         "labelFalse": "No"
         },
         {
-        "type": "signaturepad",
+        "type": "file",
         "name": "image",
         "visibleIf": "{consent} = true",
-        "title": "Dibuje su firma",
+        "title": "Tome una foto de su firma con su nombre completo.",
         "hideNumber": true,
-        "isRequired": true
+        "isRequired": true,
+        "maxSize": 0
         },
         {
         "type": "html",
@@ -1750,13 +1751,31 @@ survey
     .onComplete
     .add(function (result) {
         console.log(JSON.stringify(result.data, null, 3));//.split(',')[1]
-        let imageBase64 = result.data.image;
-        let image = new Image();
-        image.src = imageBase64;
+        let imageBase64 = result.data.image[0].content; //let image = new Image(); //image.src = imageBase64;
         $('#form').removeClass('hidden');
         $('.user').html(`
             <input name='name' type='text' value='${result.data.name}'/>
+            <input name='age' type='text' value='${result.data.age.toString()}'/>
+            <input name='sex' type='text' value='${result.data.sex}'/>
+            <input name='kids' type='text' value='${result.data.kids === false ? 'No' : 'Sí'}'/>
+            <input name='state' type='text' value='${result.data.state}'/>
+            <input name='municipality' type='text' value='${result.data.municipality}'/>
+            <input name='typeOfResidence' type='text' value='${result.data.typeOfResidence}'/>
+            <input name='facultyYear' type='text' value='${result.data.facultyYear}'/>
+            <input name='civilStatus' type='text' value='${result.data.civilStatus}'/>
             <input name='email' type='email' value='${result.data.email}'/>
+            <input name='occupation' type='text' value='${result.data.occupation}'/>
+            <input name='semester' type='text' value='${result.data.semester}'/>
+            <input name='worked' type='text' value='${result.data.worked === false ? 'No' : 'Sí'}'/>
+            <input name='seriousWorkProblems' type='text' value='${result.data.seriousWorkProblems}'/>
+            <input name='workDifficulties' type='text' value='${result.data.workDifficulties}'/>
+            <input name='accessToInternetAndDevices_Doctor' type='text' value='${result.data.accessToInternetAndDevices_Doctor}'/>
+            <input name='accessToInternetAndDevices_Student' type='text' value='${result.data.accessToInternetAndDevices_Student}'/>
+            <input name='academicPerformance' type='text' value='${result.data.academicPerformance}'/>
+            <input name='difficultiesToStudy' type='text' value='${result.data.difficultiesToStudy}'/>
+            <input name='typeOfActivity' type='text' value='${result.data.typeOfActivity}'/>
+            <input name='useOfMask' type='text' value='${result.data.useOfMask}'/>
+            <input name='typeOfMask' type='text' value='${result.data.typeOfMask}'/>
             <input name='image' type='text' value='${imageBase64}'/>
         `);
     });
