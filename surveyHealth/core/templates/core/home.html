@@ -32,25 +32,25 @@
         
         {% if 'fail' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>Algo salió mal, por favor intenta de nuevo.</b></p>
+                <p style="color:red;"><b>Algo salió mal, por favor intenta de nuevo. Tu ID de registro no se ha guardado.</b></p>
             </div>
         {% endif %}
 
         {% if 'alreadyUsed' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>El correo ya está en uso.</b></p>
+                <p style="color:red;"><b>El correo ya está en uso. Tu ID de registro no se ha guardado.</b></p>
             </div>
         {% endif %}
 
         {% if 'image' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>La imagen es muy grande o está en un formato no permitido</b></p>
+                <p style="color:red;"><b>La imagen es muy grande o está en un formato no permitido. Tu ID de registro no se ha guardado.</b></p>
             </div>
         {% endif %}
 
         {% if 'name' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos.</b></p>
+                <p style="color:red;"><b>Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos. Tu ID de registro no se ha guardado.</b></p>
             </div>
         {% endif %}
 
@@ -64,11 +64,13 @@
         
         <div class="center">
             <!-- ID -->
-            <div class="hidden" id="result">
-                <div class="alert alert-success" id="surveyId" role="alert">
-                    <h2>Tu ID de registro es: <b><span id="yearAndName"></span>{{numUsers}}</b></h2><br>
-                </div><br>
-            </div>
+            {% if not 'fail' in request.GET or 'alreadyUsed' in request.GET or 'image' in request.GET or 'name' in request.GET %}
+                <div class="hidden" id="result">
+                    <div class="alert alert-success" id="surveyId" role="alert">
+                        <h2>Tu ID de registro es: <b><span id="yearAndName"></span>{{numUsers}}</b></h2><br>
+                    </div><br>
+                </div>
+            {% endif %}
             <!-- Form -->
             <form action="/saveForm/" method="post" class="hidden form-group" id="form" enctype="multipart/form-data">
                 {% csrf_token %}
