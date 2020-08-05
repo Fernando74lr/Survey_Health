@@ -1,0 +1,41 @@
+.hidden {
+    display: none;
+}
+
+.sv-completedpage {
+    display: none!important;
+}
+
+.sv-header__text {
+    color: #254a67!important;
+}
+
+.sv-file__choose-btn {
+    background-color: #254a67!important;
+}
+
+.sv-footer__complete-btn {
+    background-color: #254a67!important;
+}
+
+.response,
+.sv-footer,
+.sv-body__footer,
+.sv-container-modern__title {
+    display: flex!important;
+    justify-content: center!important;
+    text-align: center!important;
+}
+
+#send {
+    background-color: #254a67!important;
+    border-color: #254a67!important;
+    border-radius: 1.214em!important;
+    margin-right: 20px;
+}
+
+.center {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
