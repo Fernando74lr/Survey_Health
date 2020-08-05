@@ -2,10 +2,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserSurvey
 from openpyxl import Workbook
-import openpyxl
 from django.http.response import HttpResponse
 import base64
-import json
 
 # Home view.
 def home(request):
@@ -237,79 +235,79 @@ def imageFormat(base64):
 # Get all the data from the request.
 def getQuestions(request):
     # Questions part 1.
-    pt1_1 = request.POST['pt1_1']
-    pt1_2 = request.POST['pt1_2']
-    pt1_3 = request.POST['pt1_3']
-    pt1_4 = request.POST['pt1_4']
-    pt1_5 = request.POST['pt1_5']
-    pt1_6 = request.POST['pt1_6']
-    pt1_7 = request.POST['pt1_7']
-    pt1_8 = request.POST['pt1_8']
-    pt1_9 = request.POST['pt1_9']
-    pt1_10 = request.POST['pt1_10']
-    pt1_11 = request.POST['pt1_11']
-    pt1_12 = request.POST['pt1_12']
-    pt1_13 = request.POST['pt1_13']
-    pt1_14 = request.POST['pt1_14']
-    pt1_15 = request.POST['pt1_15']
-    pt1_16 = request.POST['pt1_16']
-    pt1_17 = request.POST['pt1_17']
-    pt1_18 = request.POST['pt1_18']
-    pt1_19 = request.POST['pt1_19']
-    pt1_20 = request.POST['pt1_20']
-    pt1_21 = request.POST['pt1_21']
+    pt1_1 = request.POST.get('pt1_1', 'Sin resultado')
+    pt1_2 = request.POST.get('pt1_2', 'Sin resultado')
+    pt1_3 = request.POST.get('pt1_3', 'Sin resultado')
+    pt1_4 = request.POST.get('pt1_4', 'Sin resultado')
+    pt1_5 = request.POST.get('pt1_5', 'Sin resultado')
+    pt1_6 = request.POST.get('pt1_6', 'Sin resultado')
+    pt1_7 = request.POST.get('pt1_7', 'Sin resultado')
+    pt1_8 = request.POST.get('pt1_8', 'Sin resultado')
+    pt1_9 = request.POST.get('pt1_9', 'Sin resultado')
+    pt1_10 = request.POST.get('pt1_10', 'Sin resultado')
+    pt1_11 = request.POST.get('pt1_11', 'Sin resultado')
+    pt1_12 = request.POST.get('pt1_12', 'Sin resultado')
+    pt1_13 = request.POST.get('pt1_13', 'Sin resultado')
+    pt1_14 = request.POST.get('pt1_14', 'Sin resultado')
+    pt1_15 = request.POST.get('pt1_15', 'Sin resultado')
+    pt1_16 = request.POST.get('pt1_16', 'Sin resultado')
+    pt1_17 = request.POST.get('pt1_17', 'Sin resultado')
+    pt1_18 = request.POST.get('pt1_18', 'Sin resultado')
+    pt1_19 = request.POST.get('pt1_19', 'Sin resultado')
+    pt1_20 = request.POST.get('pt1_20', 'Sin resultado')
+    pt1_21 = request.POST.get('pt1_21', 'Sin resultado')
     # Questions part 2.
-    pt2_Intense_1 = request.POST['pt2_Intense_1']
-    pt2_Intense_2 = request.POST['pt2_Intense_2']
-    pt2_Moderated_1 = request.POST['pt2_Moderated_1']
-    pt2_Moderated_2 = request.POST['pt2_Moderated_2']
-    pt2_Hike_1 = request.POST['pt2_Hike_1']
-    pt2_Hike_2 = request.POST['pt2_Hike_2']
-    pt2_Seated_1 = request.POST['pt2_Seated_1']
+    pt2_Intense_1 = request.POST.get('pt2_Intense_1', 'Sin resultado')
+    pt2_Intense_2 = request.POST.get('pt2_Intense_2', 'Sin resultado')
+    pt2_Moderated_1 = request.POST.get('pt2_Moderated_1', 'Sin resultado')
+    pt2_Moderated_2 = request.POST.get('pt2_Moderated_2', 'Sin resultado')
+    pt2_Hike_1 = request.POST.get('pt2_Hike_1', 'Sin resultado')
+    pt2_Hike_2 = request.POST.get('pt2_Hike_2', 'Sin resultado')
+    pt2_Seated_1 = request.POST.get('pt2_Seated_1', 'Sin resultado')
     # Questions part 3.
-    pt3_1 = request.POST['pt3_1']
-    pt3_2 = request.POST['pt3_2']
-    pt3_3 = request.POST['pt3_3']
-    pt3_4 = request.POST['pt3_4']
-    pt3_5 = request.POST['pt3_5']
-    pt3_6 = request.POST['pt3_6']
-    pt3_7 = request.POST['pt3_7']
-    pt3_8 = request.POST['pt3_8']
-    pt3_9 = request.POST['pt3_9']
-    pt3_10 = request.POST['pt3_10']
+    pt3_1 = request.POST.get('pt3_1', 'Sin resultado')
+    pt3_2 = request.POST.get('pt3_2', 'Sin resultado')
+    pt3_3 = request.POST.get('pt3_3', 'Sin resultado')
+    pt3_4 = request.POST.get('pt3_4', 'Sin resultado')
+    pt3_5 = request.POST.get('pt3_5', 'Sin resultado')
+    pt3_6 = request.POST.get('pt3_6', 'Sin resultado')
+    pt3_7 = request.POST.get('pt3_7', 'Sin resultado')
+    pt3_8 = request.POST.get('pt3_8', 'Sin resultado')
+    pt3_9 = request.POST.get('pt3_9', 'Sin resultado')
+    pt3_10 = request.POST.get('pt3_10', 'Sin resultado')
     # Questions part 4.
-    pt4_1 = request.POST['pt4_1']
-    pt4_2 = request.POST['pt4_2']
-    pt4_3 = request.POST['pt4_3']
-    pt4_4 = request.POST['pt4_4']
-    pt4_5 = request.POST['pt4_5']
-    pt4_6 = request.POST['pt4_6']
+    pt4_1 = request.POST.get('pt4_1', 'Sin resultado')
+    pt4_2 = request.POST.get('pt4_2', 'Sin resultado')
+    pt4_3 = request.POST.get('pt4_3', 'Sin resultado')
+    pt4_4 = request.POST.get('pt4_4', 'Sin resultado')
+    pt4_5 = request.POST.get('pt4_5', 'Sin resultado')
+    pt4_6 = request.POST.get('pt4_6', 'Sin resultado')
     # Questions part 5.
-    pt5_1 = request.POST['pt5_1']
-    pt5_2 = request.POST['pt5_2']
-    pt5_3 = request.POST['pt5_3']
-    pt5_4 = request.POST['pt5_4']
-    pt5_5 = request.POST['pt5_5']
-    pt5_6 = request.POST['pt5_6']
-    pt5_5 = request.POST['pt5_5']
-    pt5_6 = request.POST['pt5_6']
-    pt5_7 = request.POST['pt5_7']
-    pt5_8 = request.POST['pt5_8']
+    pt5_1 = request.POST.get('pt5_1', 'Sin resultado')
+    pt5_2 = request.POST.get('pt5_2', 'Sin resultado')
+    pt5_3 = request.POST.get('pt5_3', 'Sin resultado')
+    pt5_4 = request.POST.get('pt5_4', 'Sin resultado')
+    pt5_5 = request.POST.get('pt5_5', 'Sin resultado')
+    pt5_6 = request.POST.get('pt5_6', 'Sin resultado')
+    pt5_5 = request.POST.get('pt5_5', 'Sin resultado')
+    pt5_6 = request.POST.get('pt5_6', 'Sin resultado')
+    pt5_7 = request.POST.get('pt5_7', 'Sin resultado')
+    pt5_8 = request.POST.get('pt5_8', 'Sin resultado')
 
     return (pt1_1, pt1_2, pt1_3, pt1_4, pt1_5, pt1_6, pt1_7, pt1_8, pt1_9, pt1_10, pt1_11, pt1_12, pt1_13, pt1_14, pt1_15, pt1_16, pt1_17, pt1_18, pt1_19, pt1_20, pt1_21, pt2_Intense_1, pt2_Intense_2, pt2_Moderated_1, pt2_Moderated_2, pt2_Hike_1, pt2_Hike_2, pt2_Seated_1, pt3_1, pt3_2, pt3_3, pt3_4, pt3_5, pt3_6, pt3_7, pt3_8, pt3_9, pt3_10, pt4_1, pt4_2, pt4_3, pt4_4, pt4_5, pt4_6, pt5_1, pt5_2, pt5_3, pt5_4, pt5_5, pt5_6, pt5_7, pt5_8)
 
 # Get all the data from the request.
 def getGeneralData(request):
-    facultyYear = request.POST['facultyYear']
+    facultyYear = request.POST.get('facultyYear', 'Sin resultado')
 
     # Name.
     try:
-        name = formatName(request.POST['name'])
+        name = formatName(request.POST.get('name', 'Sin resultado'))
     except:
         return redirect(reverse('home') + '?name')
-    
+
     # Image.
-    image_base64 = request.POST['image']
+    image_base64 = request.POST.get('image', 'Sin resultado')
     try:
         image = decodeImage(name, facultyYear, imageFormat(image_base64))
     except:
@@ -319,26 +317,26 @@ def getGeneralData(request):
     surveyId = getID(name, facultyYear)
 
     # General data.
-    age = request.POST['age']
-    sex = request.POST['sex']
-    kids = request.POST['kids']
-    state = request.POST['state']
-    civilStatus = request.POST['civilStatus']
-    municipality = request.POST['municipality'].lower().capitalize()
-    typeOfResidence = request.POST['typeOfResidence']
-    email = request.POST['email']
-    occupation = request.POST['occupation']
-    typeOfActivity = request.POST['typeOfActivity']
-    useOfMask = request.POST['useOfMask']
-    typeOfMask = request.POST['typeOfMask']
-    semester = request.POST['semester']
-    worked = request.POST['worked']
-    seriousWorkProblems = request.POST['seriousWorkProblems']
-    workDifficulties = request.POST['workDifficulties']
-    accessToInternetAndDevices_Doctor = request.POST['accessToInternetAndDevices_Doctor']
-    accessToInternetAndDevices_Student = request.POST['accessToInternetAndDevices_Student']
-    academicPerformance = request.POST['academicPerformance']
-    difficultiesToStudy = request.POST['difficultiesToStudy']
+    age = request.POST.get('age', 'Sin resultado')
+    sex = request.POST.get('sex', 'Sin resultado')
+    kids = request.POST.get('kids', 'Sin resultado')
+    state = request.POST.get('state', 'Sin resultado')
+    civilStatus = request.POST.get('civilStatus', 'Sin resultado')
+    municipality = request.POST.get('municipality', 'Sin resultado').lower().capitalize()
+    typeOfResidence = request.POST.get('typeOfResidence', 'Sin resultado')
+    email = request.POST.get('email', 'Sin resultado')
+    occupation = request.POST.get('occupation', 'Sin resultado')
+    typeOfActivity = request.POST.get('typeOfActivity', 'Sin resultado')
+    useOfMask = request.POST.get('useOfMask', 'Sin resultado')
+    typeOfMask = request.POST.get('typeOfMask', 'Sin resultado')
+    semester = request.POST.get('semester', 'Sin resultado')
+    worked = request.POST.get('worked', 'Sin resultado')
+    seriousWorkProblems = request.POST.get('seriousWorkProblems', 'Sin resultado')
+    workDifficulties = request.POST.get('workDifficulties', 'Sin resultado')
+    accessToInternetAndDevices_Doctor = request.POST.get('accessToInternetAndDevices_Doctor', 'Sin resultado')
+    accessToInternetAndDevices_Student = request.POST.get('accessToInternetAndDevices_Student', 'Sin resultado')
+    academicPerformance = request.POST.get('academicPerformance', 'Sin resultado')
+    difficultiesToStudy = request.POST.get('difficultiesToStudy', 'Sin resultado')
 
     return (name, surveyId, email, age, sex, kids, state, municipality, typeOfResidence, facultyYear, civilStatus, occupation, semester, worked, seriousWorkProblems, workDifficulties, accessToInternetAndDevices_Doctor, accessToInternetAndDevices_Student, academicPerformance, difficultiesToStudy, typeOfActivity, useOfMask, typeOfMask, image)
 
@@ -356,9 +354,9 @@ def saveForm(request):
         data = formatUndefinedField(list(getGeneralData(request)))
         # Get all the questions.
         questions = formatUndefinedField(list(getQuestions(request)))
-        
+
         # If email doen't exists, create new user.
-        if not UserSurvey.objects.filter(email=data[2]).exists():
+        if not UserSurvey.objects.filter(email=request.POST.get('email', 'Sin resultado')).exists():
             try:
                 # Create a new user.
                 user = UserSurvey(
@@ -446,5 +444,5 @@ def saveForm(request):
                 return redirect(reverse('home') + '?fail')
         else:
             return redirect(reverse('home') + '?alreadyUsed')
-        
+
     return render(request, 'core/home.html')

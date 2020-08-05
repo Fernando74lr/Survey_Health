@@ -25,7 +25,7 @@ SECRET_KEY = 'z^ffaz!79rj%nmx_ygkruwv+5827w0!8w8ff%rr!r@$2b5va7f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['surveyhealth.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['surveyhealth.pythonanywhere.com', 'surveyhealth.pythonanywhere.com/saveForm/','localhost', '127.0.0.1']
 
 
 # Application definition

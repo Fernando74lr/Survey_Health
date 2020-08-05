@@ -29,7 +29,7 @@
                 <p style="color:green;"><b>Tus resultados se han guardado exitosamente.</b></p>
             </div>
         {% endif %}
-        
+
         {% if 'fail' in request.GET %}
             <div class="response">
                 <p style="color:red;"><b>Algo salió mal, por favor intenta de nuevo. Tu ID de registro no se ha guardado.</b></p>
@@ -61,7 +61,7 @@
 
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div><br>
-        
+
         <div class="center">
             <!-- ID -->
             {% if not 'fail' in request.GET or 'alreadyUsed' in request.GET or 'image' in request.GET or 'name' in request.GET %}
@@ -72,14 +72,14 @@
                 </div>
             {% endif %}
             <!-- Form -->
-            <form action="/saveForm/" method="post" class="hidden form-group" id="form" enctype="multipart/form-data">
+            <form action="/saveForm/" method="POST" class="hidden form-group" id="form" enctype="multipart/form-data">
                 {% csrf_token %}
                 <!-- User's data -->
                 <div class="user"></div>
                 <input type="submit" id="send" class="btn btn-primary" value="    Guardar    ">
             </form>
         </div>
-        
+
         <script type="text/javascript" src="{% static 'core/js/surveyHealth.js' %}"></script>
 
     </body>
