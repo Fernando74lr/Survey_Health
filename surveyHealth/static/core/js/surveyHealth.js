@@ -490,7 +490,7 @@ var json = {
        {
         "type": "radiogroup",
         "name": "accessToInternetAndDevices_Student",
-        "visibleIf": "{occupation} = 'Alumno' and {seriousWorkProblems} notempty",
+        "visibleIf": "{worked} = false or {seriousWorkProblems} notempty and {occupation} = 'Alumno'",
         "title": "El acceso a internet y dispositivos electrónicos como computadora, tablet, celular etc. para tomar clases en línea fue:",
         "hideNumber": true,
         "isRequired": true,

@@ -219,7 +219,7 @@ def decodeImage(name, facultyYear, image_base64):
     # Format the name of the new image.
     filename = 'usersSignature/' + getID(name, facultyYear) + '.jpg'
     # Open file and save it in 'media' directory.
-    with open('media/'+filename, 'wb') as f:
+    with open('/home/surveyhealth/Survey_Health/surveyHealth/media/'+filename, 'wb') as f:
         f.write(imgdata)
     return filename
 
@@ -437,10 +437,12 @@ def saveForm(request):
                     pt5_7=questions[50],
                     pt5_8=questions[51]
                 )
+
                 # Save the user in DB.
                 user.save()
                 return redirect(reverse('home') + '?ok')
-            except:
+            except Exception as e:
+                print(e)
                 return redirect(reverse('home') + '?fail')
         else:
             return redirect(reverse('home') + '?alreadyUsed')
