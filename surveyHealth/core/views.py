@@ -1,12 +1,185 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserSurvey
+from openpyxl import Workbook
+import openpyxl
+from django.http.response import HttpResponse
 import base64
 import json
 
 # Home view.
 def home(request):
     return render(request, 'core/home.html', {'numUsers': str(len(UserSurvey.objects.all()) + 1)})
+
+# Results.
+def results(request):
+    users = UserSurvey.objects.all()
+    wb = Workbook()
+    ws = wb.active
+    ws['B2'] = 'REPORTE DE RESULTADOS'
+    ws.merge_cells('B2:F2')
+    # DATA
+    ws['B4'] = 'NOMBRE'
+    ws['C4'] = 'ID'
+    ws['D4'] = 'CORREO'
+    ws['E4'] = 'EDAD'
+    ws['F4'] = 'SEXO'
+    ws['G4'] = 'NIÑOS'
+    ws['H4'] = 'ESTADO'
+    ws['I4'] = 'MUNICIPIO'
+    ws['J4'] = 'TIPO DE RESIDENCIA'
+    ws['K4'] = 'AÑO DE FACULTAD'
+    ws['L4'] = 'ESTADO CIVIL'
+    ws['M4'] = 'OCUPACIÓN'
+    ws['N4'] = 'SEMESTRE'
+    ws['O4'] = '¿TRABAJÓ?'
+    ws['P4'] = 'PROBLEMAS GRAVES EN EL TRABAJO'
+    ws['Q4'] = 'DIFICULTADES EN EL TRABAJO'
+    ws['R4'] = 'ACCESO A INTERNET Y DISPOSITIVOS (DOCTOR)'
+    ws['S4'] = 'ACCESO A INTERNET Y DISPOSITIVOS (ESTUDIANTE)'
+    ws['T4'] = 'DESEMPEÑO ACADÉMICO'
+    ws['U4'] = 'TIPO DE ACTIVIDAD'
+    ws['V4'] = 'USO DE CUBREBOCAS'
+    ws['W4'] = 'TIPO DE CUBREBOCAS'
+    # Questions
+    ws['Y4'] = 'ME HA COSTADO MUCHO DESCARGAR LA TENSIÓN'
+    ws['Z4'] = 'ME DI CUENTA DE QUE TENÍA LA BOCA SECA'
+    ws['AA4'] = 'NO PODÍA SENTIR NINGÚN SENTIMIENTO POSITIVO'
+    ws['AB4'] = 'SE ME HIZO DIFÍCIL RESPIRAR'
+    ws['AC4'] = 'SE ME HIZO DIFÍCIL TOMAR LA INICIATIVA PARA HACER COSAS'
+    ws['AD4'] = 'REACCIONÉ EXAGERADAMENTE EN CIERTAS SITUACIONES'
+    ws['AE4'] = 'SENTÍ QUE MIS MANOS TEMBLABAN'
+    ws['AF4'] = 'HE SENTIDO QUE ESTABA GASTANDO UNA GRAN CANTIDAD DE ENERGÍA'
+    ws['AG4'] = 'ESTABA PREOCUPADO POR SITUACIONES EN LAS CUALES PODÍA TENER PÁNICO O EN LAS QUE PODRÍA HACER EL RIDÍCULO'
+    ws['AH4'] = 'HE SENTIDO QUE NO HABÍA NADA QUE ME ILUSIONARA'
+    ws['AI4'] = 'ME HE SENTIDO INQUIETO'
+    ws['AJ4'] = 'SE ME HIZO DIFÍCIL RELAJARME'
+    ws['AK4'] = 'ME SENTÍ TRISTE Y DEPRIMIDO'
+    ws['AL4'] = 'NO TOLERÉ NADA QUE NO ME PERMITIERA CONTINUAR CON LO QUE ESTABA HACIENDO'
+    ws['AM4'] = 'SENTÍ QUE ESTABA AL PUNTO DE PÁNICO'
+    ws['AN4'] = 'NO ME PUDE ENTUSIASMAR POR NADA'
+    ws['AO4'] = 'SENTÍ QUE VALÍA MUY POCO COMO PERSONA'
+    ws['AP4'] = 'HE TENDIDO A SENTIRME ENFADADO CON FACILIDAD'
+    ws['AQ4'] = 'SENTÍ LOS LATIDOS DE MI CORAZÓN A PESAR DE NO HABER HECHO NINGÚN ESFUERZO FÍSICO'
+    ws['AR4'] = 'TUVE MIEDO SIN RAZÓN'
+    ws['AS4'] = 'SENTÍ QUE LA VIDA NO TENÍA NINGÚN SENTIDO'
+    ws['AT4'] = 'DURANTE LOS ÚLTIMOS 7 DÍAS, ¿EN CUÁNTOS REALIZÓ ACTIVIDADES FÍSICAS INTENSAS TALES COMO LEVANTAR PESAS, CLAVAR, HACER EJERCICIOS AERÓBICOS O ANDAR RÁPIDO EN BICICLETA?'
+    ws['AU4'] = 'HABITUALMENTE, ¿CUÁNTAS HORAS EN TOTAL DEDICÓ A UNA ACTIVIDAD FÍSICA INTENSA EN UNO DE ESOS DÍAS?'
+    ws['AV4'] = 'DURANTE LOS ÚLTIMOS 7 DÍAS, ¿EN CUÁNTOS DÍAS HIZO ACTIVIDADES FÍSICAS MODERADAS COMO TRANSPORTAR PESOS LIVIANOS, ANDAR EN BICICLETA A VELOCIDAD REGULAR, JUGAR TENIS? NO INCLUYA CAMINAR.'
+    ws['AW4'] = 'HABITUALMENTE, ¿CUÁNTAS HORAS EN TOTAL DEDICÓ A UNA ACTIVIDAD FÍSICA MODERADA EN UNO DE ESOS DÍAS?'
+    ws['AX4'] = 'DURANTE LOS ÚLTIMOS 7 DÍAS, ¿EN CUÁNTOS DÍAS CAMINÓ POR LO MENOS 10 MINUTOS SEGUIDOS?"'
+    ws['AY4'] = 'HABITUALMENTE, ¿CUÁNTAS HORAS DEDICÓ A CAMINAR EN UNO DE ESOS DÍAS?'
+    ws['AZ4'] = 'DURANTE LOS ÚLTIMOS 7 DÍAS, ¿CUÁNTO TIEMPO PASÓ SENTADO DURANTE UN DÍA HÁBIL?'
+    ws['BA4'] = '¿HA SALIDO HABITUALMENTE DE CASA (SU LUGAR DE RESIDENCIA ACTUAL) POR CUESTIONES LABORALES?'
+    ws['BB4'] = '¿HA DORMIDO MÁS QUE ANTES?'
+    ws['BC4'] = '¿HA VISTO LA TV MÁS QUE ANTES?'
+    ws['BD4'] = '¿HA PRACTICADO EJERCICIO FÍSICO DE FORMA REGULAR?'
+    ws['BE4'] = '¿HA UTILIZADO LAS REDES SOCIALES MÁS QUE ANTES?'
+    ws['BF4'] = '¿HAN CAMBIADO MUCHO SUS RUTINAS?'
+    ws['BG4'] = '¿HA UTILIZADO INTERNET MÁS QUE ANTES?'
+    ws['BH4'] = '¿HA DEDICADO MÁS TIEMPO QUE ANTES A VER PELÍCULAS, LEER, O JUGAR A VIDEOJUEGOS?'
+    ws['BI4'] = '¿HA APROVECHADO PARA REALIZAR ACTIVIDADES EN CASA PARA LAS QUE ANTES NO DISPONÍA DE TIEMPO?'
+    ws['BJ4'] = '¿HA MANTENIDO SUS CUIDADOS PERSONALES HABITUALES?'
+    ws['BK4'] = '¿UTILIZA SIEMPRE O CASI SIEMPRE GUANTES CUANDO SALE DE CASA?'
+    ws['BL4'] = '¿MANTIENE SIEMPRE O CASI SIEMPRE LA DISTANCIA DE SEGURIDAD CON OTRAS PERSONAS FUERA DE CASA (AL MENOS 2 METROS)?'
+    ws['BM4'] = '¿CREE QUE SE LAVA O DESINFECTA LAS MANOS CON EXCESIVA FRECUENCIA?'
+    ws['BN4'] = '¿DESINFECTA HABITUALMENTE LOS OBJETOS Y SUPERFICIES CON GEL DESINFECTANTE, JABÓN, ALCOHOL, ETC.?'
+    ws['BO4'] = '¿TOMA PRECAUCIONES HABITUALMENTE AL LLEGAR DEL SUPERMERCADO, LAVANDO LOS ALIMENTOS, DESINFECTANDO EL TELÉFONO CELULAR O LAS LLAVES, ETC.?'
+    ws['BP4'] = '¿SE PROTEGE HABITUALMENTE AL TOCAR ZONAS DE POSIBLE CONTAGIO, COMO MANIJAS, ASCENSORES, LECTORES DE TARJETAS DE CRÉDITO, ETC.?'
+    ws['BQ4'] = '¿HA TENIDO DISCUSIONES O CONFLICTOS CON SUS FAMILIARES?'
+    ws['BR4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER VER A ALGUNOS DE SUS FAMILIARES QUE VEÍA HABITUALMENTE?'
+    ws['BS4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER VER A SUS AMIGOS?'
+    ws['BT4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER REALIZAR ACTIVIDADES DE OCIO FUERA DE CASA (VIAJAR, SALIR, ETC.)?'
+    ws['BU4'] = '¿HA TENIDO PROBLEMAS PARA REALIZAR ACTIVIDADES DE OCIO EN CASA (LEER, ESCRIBIR, VER PELÍCULAS, VIDEOJUEGOS, ETC.)?'
+    ws['BV4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER REALIZAR ACTIVIDADES FÍSICAS FUERA DE CASA (DEPORTE, EJERCICIO FÍSICO, IR AL CAMPO, ETC.)?'
+    ws['BW4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER SALIR DE CASA SALVO PARA COSAS MUY NECESARIAS?'
+    ws['BX4'] = '¿LE HA PERTURBADO O ALTERADO NO PODER DISPONER DE COSAS QUE NECESITABA?'
+
+    cont = 5
+
+    for user in users:
+        ws.cell(row=cont,column=2).value = user.name
+        ws.cell(row=cont,column=3).value = user.surveyId
+        ws.cell(row=cont,column=4).value = user.email
+        ws.cell(row=cont,column=5).value = user.age
+        ws.cell(row=cont,column=6).value = user.sex
+        ws.cell(row=cont,column=7).value = user.kids
+        ws.cell(row=cont,column=8).value = user.state
+        ws.cell(row=cont,column=9).value = user.municipality
+        ws.cell(row=cont,column=10).value = user.typeOfResidence
+        ws.cell(row=cont,column=11).value = user.facultyYear
+        ws.cell(row=cont,column=12).value = user.civilStatus
+        ws.cell(row=cont,column=13).value = user.occupation
+        ws.cell(row=cont,column=14).value = user.semester
+        ws.cell(row=cont,column=15).value = user.worked
+        ws.cell(row=cont,column=16).value = user.seriousWorkProblems
+        ws.cell(row=cont,column=17).value = user.workDifficulties
+        ws.cell(row=cont,column=18).value = user.accessToInternetAndDevices_Doctor
+        ws.cell(row=cont,column=19).value = user.accessToInternetAndDevices_Student
+        ws.cell(row=cont,column=20).value = user.academicPerformance
+        ws.cell(row=cont,column=21).value = user.difficultiesToStudy
+        ws.cell(row=cont,column=22).value = user.typeOfActivity
+        ws.cell(row=cont,column=23).value = user.useOfMask
+        ws.cell(row=cont,column=24).value = user.typeOfMask
+        ws.cell(row=cont,column=26).value = user.pt1_1
+        ws.cell(row=cont,column=27).value = user.pt1_2
+        ws.cell(row=cont,column=28).value = user.pt1_3
+        ws.cell(row=cont,column=29).value = user.pt1_4
+        ws.cell(row=cont,column=30).value = user.pt1_5
+        ws.cell(row=cont,column=31).value = user.pt1_6
+        ws.cell(row=cont,column=32).value = user.pt1_7
+        ws.cell(row=cont,column=33).value = user.pt1_8
+        ws.cell(row=cont,column=34).value = user.pt1_9
+        ws.cell(row=cont,column=35).value = user.pt1_10
+        ws.cell(row=cont,column=36).value = user.pt1_11
+        ws.cell(row=cont,column=37).value = user.pt1_12
+        ws.cell(row=cont,column=38).value = user.pt1_13
+        ws.cell(row=cont,column=39).value = user.pt1_14
+        ws.cell(row=cont,column=40).value = user.pt1_15
+        ws.cell(row=cont,column=41).value = user.pt1_16
+        ws.cell(row=cont,column=42).value = user.pt1_17
+        ws.cell(row=cont,column=43).value = user.pt1_18
+        ws.cell(row=cont,column=44).value = user.pt1_19
+        ws.cell(row=cont,column=45).value = user.pt1_20
+        ws.cell(row=cont,column=46).value = user.pt1_21
+        ws.cell(row=cont,column=47).value = user.pt2_Intense_1
+        ws.cell(row=cont,column=48).value = user.pt2_Intense_2
+        ws.cell(row=cont,column=49).value = user.pt2_Moderated_1
+        ws.cell(row=cont,column=50).value = user.pt2_Moderated_2
+        ws.cell(row=cont,column=51).value = user.pt2_Hike_1
+        ws.cell(row=cont,column=52).value = user.pt2_Hike_2
+        ws.cell(row=cont,column=53).value = user.pt2_Seated_1
+        ws.cell(row=cont,column=54).value = user.pt3_1
+        ws.cell(row=cont,column=55).value = user.pt3_2
+        ws.cell(row=cont,column=56).value = user.pt3_3
+        ws.cell(row=cont,column=57).value = user.pt3_4
+        ws.cell(row=cont,column=58).value = user.pt3_5
+        ws.cell(row=cont,column=59).value = user.pt3_6
+        ws.cell(row=cont,column=60).value = user.pt3_7
+        ws.cell(row=cont,column=61).value = user.pt3_8
+        ws.cell(row=cont,column=62).value = user.pt3_9
+        ws.cell(row=cont,column=63).value = user.pt3_10
+        ws.cell(row=cont,column=64).value = user.pt4_1
+        ws.cell(row=cont,column=65).value = user.pt4_2
+        ws.cell(row=cont,column=66).value = user.pt4_3
+        ws.cell(row=cont,column=67).value = user.pt4_4
+        ws.cell(row=cont,column=68).value = user.pt4_5
+        ws.cell(row=cont,column=69).value = user.pt4_6
+        ws.cell(row=cont,column=70).value = user.pt5_1
+        ws.cell(row=cont,column=71).value = user.pt5_2
+        ws.cell(row=cont,column=72).value = user.pt5_3
+        ws.cell(row=cont,column=73).value = user.pt5_4
+        ws.cell(row=cont,column=74).value = user.pt5_5
+        ws.cell(row=cont,column=75).value = user.pt5_6
+        cont+=1
+
+    filename = 'Reporte_De_Resultados.xlsx'
+    response = HttpResponse(content_type = 'application/ms-excel')
+    content = 'attachment; filename = {0}'.format(filename)
+    response['Content-Disposition'] = content
+    wb.save(response)
+
+    return response
 
 # Format the name with the first letter capitalized in each word.
 def formatName(name):

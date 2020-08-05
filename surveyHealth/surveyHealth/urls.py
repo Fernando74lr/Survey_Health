@@ -21,6 +21,7 @@ from . import settings
 urlpatterns = [
     path('', views.home, name='home'),
     path('saveForm/', views.saveForm, name='saveForm'),
+    path('results/', views.results, name='results'),
     path('admin/', admin.site.urls),
 ]
 
