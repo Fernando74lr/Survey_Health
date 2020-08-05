@@ -38,9 +38,10 @@ def results(request):
     ws['R4'] = 'ACCESO A INTERNET Y DISPOSITIVOS (DOCTOR)'
     ws['S4'] = 'ACCESO A INTERNET Y DISPOSITIVOS (ESTUDIANTE)'
     ws['T4'] = 'DESEMPEÑO ACADÉMICO'
-    ws['U4'] = 'TIPO DE ACTIVIDAD'
-    ws['V4'] = 'USO DE CUBREBOCAS'
-    ws['W4'] = 'TIPO DE CUBREBOCAS'
+    ws['U4'] = 'DIFICULTADES PARA ESTUDIAR'
+    ws['V4'] = 'TIPO DE ACTIVIDAD'
+    ws['W4'] = 'USO DE CUBREBOCAS'
+    ws['X4'] = 'TIPO DE CUBREBOCAS'
     # Questions
     ws['Y4'] = 'ME HA COSTADO MUCHO DESCARGAR LA TENSIÓN'
     ws['Z4'] = 'ME DI CUENTA DE QUE TENÍA LA BOCA SECA'
@@ -121,56 +122,58 @@ def results(request):
         ws.cell(row=cont,column=22).value = user.typeOfActivity
         ws.cell(row=cont,column=23).value = user.useOfMask
         ws.cell(row=cont,column=24).value = user.typeOfMask
-        ws.cell(row=cont,column=26).value = user.pt1_1
-        ws.cell(row=cont,column=27).value = user.pt1_2
-        ws.cell(row=cont,column=28).value = user.pt1_3
-        ws.cell(row=cont,column=29).value = user.pt1_4
-        ws.cell(row=cont,column=30).value = user.pt1_5
-        ws.cell(row=cont,column=31).value = user.pt1_6
-        ws.cell(row=cont,column=32).value = user.pt1_7
-        ws.cell(row=cont,column=33).value = user.pt1_8
-        ws.cell(row=cont,column=34).value = user.pt1_9
-        ws.cell(row=cont,column=35).value = user.pt1_10
-        ws.cell(row=cont,column=36).value = user.pt1_11
-        ws.cell(row=cont,column=37).value = user.pt1_12
-        ws.cell(row=cont,column=38).value = user.pt1_13
-        ws.cell(row=cont,column=39).value = user.pt1_14
-        ws.cell(row=cont,column=40).value = user.pt1_15
-        ws.cell(row=cont,column=41).value = user.pt1_16
-        ws.cell(row=cont,column=42).value = user.pt1_17
-        ws.cell(row=cont,column=43).value = user.pt1_18
-        ws.cell(row=cont,column=44).value = user.pt1_19
-        ws.cell(row=cont,column=45).value = user.pt1_20
-        ws.cell(row=cont,column=46).value = user.pt1_21
-        ws.cell(row=cont,column=47).value = user.pt2_Intense_1
-        ws.cell(row=cont,column=48).value = user.pt2_Intense_2
-        ws.cell(row=cont,column=49).value = user.pt2_Moderated_1
-        ws.cell(row=cont,column=50).value = user.pt2_Moderated_2
-        ws.cell(row=cont,column=51).value = user.pt2_Hike_1
-        ws.cell(row=cont,column=52).value = user.pt2_Hike_2
-        ws.cell(row=cont,column=53).value = user.pt2_Seated_1
-        ws.cell(row=cont,column=54).value = user.pt3_1
-        ws.cell(row=cont,column=55).value = user.pt3_2
-        ws.cell(row=cont,column=56).value = user.pt3_3
-        ws.cell(row=cont,column=57).value = user.pt3_4
-        ws.cell(row=cont,column=58).value = user.pt3_5
-        ws.cell(row=cont,column=59).value = user.pt3_6
-        ws.cell(row=cont,column=60).value = user.pt3_7
-        ws.cell(row=cont,column=61).value = user.pt3_8
-        ws.cell(row=cont,column=62).value = user.pt3_9
-        ws.cell(row=cont,column=63).value = user.pt3_10
-        ws.cell(row=cont,column=64).value = user.pt4_1
-        ws.cell(row=cont,column=65).value = user.pt4_2
-        ws.cell(row=cont,column=66).value = user.pt4_3
-        ws.cell(row=cont,column=67).value = user.pt4_4
-        ws.cell(row=cont,column=68).value = user.pt4_5
-        ws.cell(row=cont,column=69).value = user.pt4_6
-        ws.cell(row=cont,column=70).value = user.pt5_1
-        ws.cell(row=cont,column=71).value = user.pt5_2
-        ws.cell(row=cont,column=72).value = user.pt5_3
-        ws.cell(row=cont,column=73).value = user.pt5_4
-        ws.cell(row=cont,column=74).value = user.pt5_5
-        ws.cell(row=cont,column=75).value = user.pt5_6
+        ws.cell(row=cont,column=25).value = user.pt1_1
+        ws.cell(row=cont,column=26).value = user.pt1_2
+        ws.cell(row=cont,column=27).value = user.pt1_3
+        ws.cell(row=cont,column=28).value = user.pt1_4
+        ws.cell(row=cont,column=29).value = user.pt1_5
+        ws.cell(row=cont,column=30).value = user.pt1_6
+        ws.cell(row=cont,column=31).value = user.pt1_7
+        ws.cell(row=cont,column=32).value = user.pt1_8
+        ws.cell(row=cont,column=33).value = user.pt1_9
+        ws.cell(row=cont,column=34).value = user.pt1_10
+        ws.cell(row=cont,column=35).value = user.pt1_11
+        ws.cell(row=cont,column=36).value = user.pt1_12
+        ws.cell(row=cont,column=37).value = user.pt1_13
+        ws.cell(row=cont,column=38).value = user.pt1_14
+        ws.cell(row=cont,column=39).value = user.pt1_15
+        ws.cell(row=cont,column=40).value = user.pt1_16
+        ws.cell(row=cont,column=41).value = user.pt1_17
+        ws.cell(row=cont,column=42).value = user.pt1_18
+        ws.cell(row=cont,column=43).value = user.pt1_19
+        ws.cell(row=cont,column=44).value = user.pt1_20
+        ws.cell(row=cont,column=45).value = user.pt1_21
+        ws.cell(row=cont,column=46).value = user.pt2_Intense_1
+        ws.cell(row=cont,column=47).value = user.pt2_Intense_2
+        ws.cell(row=cont,column=48).value = user.pt2_Moderated_1
+        ws.cell(row=cont,column=49).value = user.pt2_Moderated_2
+        ws.cell(row=cont,column=50).value = user.pt2_Hike_1
+        ws.cell(row=cont,column=51).value = user.pt2_Hike_2
+        ws.cell(row=cont,column=52).value = user.pt2_Seated_1
+        ws.cell(row=cont,column=53).value = user.pt3_1
+        ws.cell(row=cont,column=54).value = user.pt3_2
+        ws.cell(row=cont,column=55).value = user.pt3_3
+        ws.cell(row=cont,column=56).value = user.pt3_4
+        ws.cell(row=cont,column=57).value = user.pt3_5
+        ws.cell(row=cont,column=58).value = user.pt3_6
+        ws.cell(row=cont,column=59).value = user.pt3_7
+        ws.cell(row=cont,column=60).value = user.pt3_8
+        ws.cell(row=cont,column=61).value = user.pt3_9
+        ws.cell(row=cont,column=62).value = user.pt3_10
+        ws.cell(row=cont,column=63).value = user.pt4_1
+        ws.cell(row=cont,column=64).value = user.pt4_2
+        ws.cell(row=cont,column=65).value = user.pt4_3
+        ws.cell(row=cont,column=66).value = user.pt4_4
+        ws.cell(row=cont,column=67).value = user.pt4_5
+        ws.cell(row=cont,column=68).value = user.pt4_6
+        ws.cell(row=cont,column=69).value = user.pt5_1
+        ws.cell(row=cont,column=70).value = user.pt5_2
+        ws.cell(row=cont,column=71).value = user.pt5_3
+        ws.cell(row=cont,column=72).value = user.pt5_4
+        ws.cell(row=cont,column=73).value = user.pt5_5
+        ws.cell(row=cont,column=74).value = user.pt5_6
+        ws.cell(row=cont,column=75).value = user.pt5_7
+        ws.cell(row=cont,column=76).value = user.pt5_8
         cont+=1
 
     filename = 'Reporte_De_Resultados.xlsx'
