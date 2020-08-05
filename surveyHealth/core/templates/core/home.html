@@ -26,39 +26,53 @@
 
         {% if 'ok' in request.GET %}
             <div class="response">
-                <p style="color:green;"><b>Your results has been correctly saved.</b></p>
+                <p style="color:green;"><b>Tus resultados se han guardado exitosamente.</b></p>
             </div>
         {% endif %}
         
         {% if 'fail' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>Something went wrong, please try again.</b></p>
+                <p style="color:red;"><b>Algo salió mal, por favor intenta de nuevo.</b></p>
             </div>
         {% endif %}
 
         {% if 'alreadyUsed' in request.GET %}
             <div class="response">
-                <p style="color:red;"><b>The email is already used, please try again.</b></p>
+                <p style="color:red;"><b>El correo ya está en uso.</b></p>
             </div>
         {% endif %}
 
-        <!--<div class="buttons_panel center" style="margin-top:10px;">
-            <button type="button" onclick="admin()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Admin  <i class="fa fa-user" style="font-size:18px;"></i></button>
-            <br>
-            <button type="button" onclick="results()" class="btn btn-success" style="border-radius:1.214em!important;text-decoration:none!important;">Results  <i class="fa fa-inbox" style="font-size:18px;"></i></button>
-        </div>-->
+        {% if 'image' in request.GET %}
+            <div class="response">
+                <p style="color:red;"><b>La imagen es muy grande o está en un formato no permitido</b></p>
+            </div>
+        {% endif %}
+
+        {% if 'name' in request.GET %}
+            <div class="response">
+                <p style="color:red;"><b>Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos.</b></p>
+            </div>
+        {% endif %}
 
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
-        <div id="surveyResult"></div>
+        <div id="surveyResult"></div><br>
         
-        <br>
         <div class="center">
+            <!-- ID -->
+            <div class="hidden" id="result">
+                <div class="alert alert-success" id="surveyId" role="alert">
+                    <h2>Tu ID de registro es: <b><span id="yearAndName"></span>{{numUsers}}</b></h2><br>
+                </div><br>
+            </div>
+            <!-- Form -->
             <form action="/saveForm/" method="post" class="hidden form-group" id="form" enctype="multipart/form-data">
                 {% csrf_token %}
+                <!-- User's data -->
                 <div class="user"></div>
-                <input type="submit" id="send" class="btn btn-primary" value="    Send    ">
+                <input type="submit" id="send" class="btn btn-primary" value="    Guardar    ">
             </form>
         </div>
+        
         <script type="text/javascript" src="{% static 'core/js/scripts.js' %}"></script>
 
     </body>

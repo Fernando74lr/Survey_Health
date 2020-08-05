@@ -2,6 +2,8 @@ let admin = () => location.replace(`${window.origin}/admin`);
 let results = () => location.replace(`${window.origin}/results`);
 let home = () => location.replace(window.origin.replace("results",""));
 
+$('.sv-footer__complete-btn').css('value', 'Completar');
+
 Survey
     .StylesManager
     .applyTheme("modern");
@@ -554,13 +556,13 @@ var json = {
         {
         "type": "html",
         "name": "indication_1",
-        "visibleIf": "{name} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "html": "<h1>Indicación</h1><br>\n<h2>Por favor lea las siguientes afirmaciones y seleccione qué grado le ha ocurrido a usted esa afirmación durante la semana pasada.</h2>"
         },
         {
         "type": "radiogroup",
         "name": "pt1_1",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Me ha costado mucho descargar la tensión.",
         "isRequired": true,
         "choices": [
@@ -585,7 +587,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_2",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Me di cuenta que tenía la boca seca.",
         "isRequired": true,
         "choices": [
@@ -610,7 +612,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_3",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "No podía sentir ningún sentimiento positivo.",
         "isRequired": true,
         "choices": [
@@ -635,7 +637,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_4",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Se me hizo difícil respirar.",
         "isRequired": true,
         "choices": [
@@ -660,7 +662,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_5",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Se me hizo difícil tomar la iniciativa para hacer cosas.",
         "isRequired": true,
         "choices": [
@@ -685,7 +687,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_6",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Reaccioné exageradamente en ciertas situaciones.",
         "isRequired": true,
         "choices": [
@@ -710,7 +712,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_7",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Sentí que mis manos temblaban.",
         "isRequired": true,
         "choices": [
@@ -735,7 +737,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_8",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "He sentido que estaba gastando una gran cantidad de energía.",
         "isRequired": true,
         "choices": [
@@ -760,7 +762,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_9",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Estaba preocupado por situaciones en las cuales podía tener pánico o en las que podría hacer el ridículo.",
         "isRequired": true,
         "choices": [
@@ -785,7 +787,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_10",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "He sentido que no había nada que me ilusionara.",
         "isRequired": true,
         "choices": [
@@ -810,7 +812,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_11",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Me he sentido inquieto.",
         "isRequired": true,
         "choices": [
@@ -835,7 +837,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_12",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Se me hizo difícil relajarme.",
         "isRequired": true,
         "choices": [
@@ -860,7 +862,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_13",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Me sentí triste y deprimido.",
         "isRequired": true,
         "choices": [
@@ -885,7 +887,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_14",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "No toleré nada que no me permitiera continuar con lo que estaba haciendo.",
         "isRequired": true,
         "choices": [
@@ -910,7 +912,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_15",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Sentí que estaba al punto de pánico.",
         "isRequired": true,
         "choices": [
@@ -935,7 +937,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_16",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "No me pude entusiasmar por nada.",
         "isRequired": true,
         "choices": [
@@ -960,7 +962,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_17",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Sentí que valía muy poco como persona.",
         "isRequired": true,
         "choices": [
@@ -985,7 +987,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_18",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "He tendido a sentirme enfadado con facilidad.",
         "isRequired": true,
         "choices": [
@@ -1010,7 +1012,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_19",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Sentí los latidos de mi corazón a pesar de no haber hecho ningún esfuerzo físico.",
         "isRequired": true,
         "choices": [
@@ -1035,7 +1037,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_20",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Tuve miedo sin razón.",
         "isRequired": true,
         "choices": [
@@ -1060,7 +1062,7 @@ var json = {
         {
         "type": "radiogroup",
         "name": "pt1_21",
-        "visibleIf": "{academicPerformance} notempty or {accessToInternetAndDevices_Doctor} notempty",
+        "visibleIf": "{worked} = false or {difficultiesToStudy} notempty or {accessToInternetAndDevices_Doctor} notempty",
         "title": "Sentí que la vida no tenía ningún sentido.",
         "isRequired": true,
         "choices": [
@@ -1109,7 +1111,7 @@ var json = {
             "text": "Caminatas"
             },
             {
-            "value": "Sentado ( nula actividad física)",
+            "value": "Sentado (nula actividad física)",
             "text": "Sentado (nula actividad física)"
             }
         ]
@@ -1279,13 +1281,13 @@ var json = {
         {
         "type": "html",
         "name": "seated",
-        "visibleIf": "{typeOfActivity} = 'Sentado ( nula actividad física)'",
+        "visibleIf": "{typeOfActivity} = 'Sentado (nula actividad física)'",
         "html": "<h2>Sentado</h2><br>\n<h3>Esto incluye el tiempo dedicado al trabajo, en la casa, clase, durante tiempo libre. Puede incluir el tiempo que pasó sentado en el escritorio, visitando a un amigo, leyendo, viajando en bus, sentado o recostado mirando televisión.</h3>"
         },
         {
         "type": "rating",
         "name": "pt2_Seated_1",
-        "visibleIf": "{typeOfActivity} = 'Sentado ( nula actividad física)'",
+        "visibleIf": "{typeOfActivity} = 'Sentado (nula actividad física)'",
         "title": "Durante los últimos 7 días, ¿Cuánto tiempo pasó sentado durante un día hábil?",
         "isRequired": true,
         "rateMax": 12
@@ -1747,36 +1749,63 @@ var json = {
 
 window.survey = new Survey.Model(json);
 
+// Capitalize each word
+let capitalizeWords = (str) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+
+// Create an ID
+function getId(name, facultyYear) {
+    let initials = capitalizeWords(name).split(' ');
+    let abrev;
+    if (!(initials.length <= 2)) {
+        try {
+            if (initials.length > 3)
+                abrev = initials[2][0] + initials[3][0] + initials[0][0] + initials[1][0];
+            else
+                abrev = initials[1][0] + initials[2][0] + initials[0][0] + '0';            
+        } catch (error) {
+            console.log(error);
+            location.replace(`${window.origin}/?name`);
+        }
+    }
+    let surveyId = facultyYear + abrev + '_';
+    return surveyId;
+}
+
 survey
     .onComplete
     .add(function (result) {
-        console.log(JSON.stringify(result.data, null, 3));//.split(',')[1]
-        let imageBase64 = result.data.image[0].content; //let image = new Image(); //image.src = imageBase64;
+        console.log(JSON.stringify(result.data, null, 3));
+        let imageBase64 = result.data.image[0].content;
+        let surveyId = getId(result.data.name, result.data.facultyYear);
+        
+        // Render and Send Data
         $('#form').removeClass('hidden');
+        $('#result').removeClass('hidden');
+        $('#yearAndName').html(`${surveyId}`);
         $('.user').html(`
-            <input name='name' type='text' value='${result.data.name}'/>
-            <input name='age' type='text' value='${result.data.age.toString()}'/>
-            <input name='sex' type='text' value='${result.data.sex}'/>
-            <input name='kids' type='text' value='${result.data.kids === false ? 'No' : 'Sí'}'/>
-            <input name='state' type='text' value='${result.data.state}'/>
-            <input name='municipality' type='text' value='${result.data.municipality}'/>
-            <input name='typeOfResidence' type='text' value='${result.data.typeOfResidence}'/>
-            <input name='facultyYear' type='text' value='${result.data.facultyYear}'/>
-            <input name='civilStatus' type='text' value='${result.data.civilStatus}'/>
-            <input name='email' type='email' value='${result.data.email}'/>
-            <input name='occupation' type='text' value='${result.data.occupation}'/>
-            <input name='semester' type='text' value='${result.data.semester}'/>
-            <input name='worked' type='text' value='${result.data.worked === false ? 'No' : 'Sí'}'/>
-            <input name='seriousWorkProblems' type='text' value='${result.data.seriousWorkProblems}'/>
-            <input name='workDifficulties' type='text' value='${result.data.workDifficulties}'/>
-            <input name='accessToInternetAndDevices_Doctor' type='text' value='${result.data.accessToInternetAndDevices_Doctor}'/>
-            <input name='accessToInternetAndDevices_Student' type='text' value='${result.data.accessToInternetAndDevices_Student}'/>
-            <input name='academicPerformance' type='text' value='${result.data.academicPerformance}'/>
-            <input name='difficultiesToStudy' type='text' value='${result.data.difficultiesToStudy}'/>
-            <input name='typeOfActivity' type='text' value='${result.data.typeOfActivity}'/>
-            <input name='useOfMask' type='text' value='${result.data.useOfMask}'/>
-            <input name='typeOfMask' type='text' value='${result.data.typeOfMask}'/>
-            <input name='image' type='text' value='${imageBase64}'/>
+            <input name='name' type='text' value='${result.data.name}' hidden/>
+            <input name='age' type='text' value='${result.data.age.toString()}' hidden/>
+            <input name='sex' type='text' value='${result.data.sex}' hidden/>
+            <input name='kids' type='text' value='${result.data.kids === false ? 'No' : 'Sí'}' hidden/>
+            <input name='state' type='text' value='${result.data.state}' hidden/>
+            <input name='municipality' type='text' value='${result.data.municipality}' hidden/>
+            <input name='typeOfResidence' type='text' value='${result.data.typeOfResidence}' hidden/>
+            <input name='facultyYear' type='text' value='${result.data.facultyYear}' hidden/>
+            <input name='civilStatus' type='text' value='${result.data.civilStatus}' hidden/>
+            <input name='email' type='email' value='${result.data.email}' hidden/>
+            <input name='occupation' type='text' value='${result.data.occupation}' hidden/>
+            <input name='semester' type='text' value='${result.data.semester}' hidden/>
+            <input name='worked' type='text' value='${result.data.worked === false ? 'No' : 'Sí'}' hidden/>
+            <input name='seriousWorkProblems' type='text' value='${result.data.seriousWorkProblems}' hidden/>
+            <input name='workDifficulties' type='text' value='${result.data.workDifficulties}' hidden/>
+            <input name='accessToInternetAndDevices_Doctor' type='text' value='${result.data.accessToInternetAndDevices_Doctor}' hidden/>
+            <input name='accessToInternetAndDevices_Student' type='text' value='${result.data.accessToInternetAndDevices_Student}' hidden/>
+            <input name='academicPerformance' type='text' value='${result.data.academicPerformance}' hidden/>
+            <input name='difficultiesToStudy' type='text' value='${result.data.difficultiesToStudy}' hidden/>
+            <input name='typeOfActivity' type='text' value='${result.data.typeOfActivity}' hidden/>
+            <input name='useOfMask' type='text' value='${result.data.useOfMask}' hidden/>
+            <input name='typeOfMask' type='text' value='${result.data.typeOfMask}' hidden/>
+            <input name='image' type='text' value='${imageBase64}' hidden/>
         `);
     });
 

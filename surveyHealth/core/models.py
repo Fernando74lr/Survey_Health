@@ -11,7 +11,7 @@ class UserSurvey(models.Model):
     state = models.CharField(max_length=200, null=True, blank=False, verbose_name="Estado")
     municipality = models.CharField(max_length=200, null=True, blank=False, verbose_name="Municipio")
     typeOfResidence = models.CharField(max_length=200, null=True, blank=False, verbose_name="Tipo de residencia")
-    factultyYear = models.CharField(max_length=4, null=True, blank=False, verbose_name="Año de ingreso a la facultad")
+    facultyYear = models.CharField(max_length=4, null=True, blank=False, verbose_name="Año de ingreso a la facultad")
     civilStatus = models.CharField(max_length=100, null=True, blank=False, verbose_name="Estado civil")
     occupation = models.CharField(max_length=200, null=True, blank=False, verbose_name="Ocupación")
     semester = models.CharField(max_length=200, null=True, blank=False, verbose_name="Semestre (si aplica)")
