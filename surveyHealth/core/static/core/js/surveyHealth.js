@@ -3,6 +3,7 @@ let results = () => location.replace(`${window.origin}/results`);
 let home = () => location.replace(window.origin.replace("results",""));
 
 $('.sv-footer__complete-btn').css('value', 'Completar');
+$('.sv-logo__image').css('border-radius', '5px');
 
 Survey
     .StylesManager
@@ -11,6 +12,8 @@ Survey
 //var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
 var json = {
     "logo": "https://www.buap.mx/sites/default/files/styles/slider_general/public/banner_buap_20.png?itok=z8SCQ2dB",
+    "logoWidth": 650,
+    "logoHeight": 300,
     "locale": "es",
     "pages": [
         {
@@ -1869,18 +1872,19 @@ let capitalizeWords = (str) => str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUp
 
 // Create an ID
 function getId(name, facultyYear) {
-    let initials = capitalizeWords(name).split(' ');
     let abrev;
-    if (!(initials.length <= 2)) {
+    if (!(name.length <= 2)) {
         try {
-            if (initials.length > 3)
-                abrev = initials[2][0] + initials[3][0] + initials[0][0] + initials[1][0];
+            if (name.length > 3)
+                abrev = name[2] + name[3] + name[0] + name[1];
             else
-                abrev = initials[1][0] + initials[2][0] + initials[0][0] + '0';
+                abrev = name[1] + name[2] + name[0] + '0';
         } catch (error) {
             console.log(error);
             location.replace(`${window.origin}/?name`);
         }
+    } else {
+        abrev = 'GENERICO';
     }
     let surveyId = facultyYear + abrev + '_';
     return surveyId;
@@ -1892,93 +1896,103 @@ survey
         console.log(JSON.stringify(result.data, null, 3));
         let imageBase64 = result.data.image[0].content;
         let surveyId = getId(result.data.name, result.data.facultyYear);
+        let email = result.data.email;
+        let emailConfirm = result.data.emailConfirmation;
 
-        // Render and Send Data
-        $('#form').removeClass('hidden');
-        $('#result').removeClass('hidden');
-        $('#yearAndName').html(`${surveyId}`);
-        $('.user').html(`
-            <input name='name' type='text' value='${result.data.name}' hidden/>
-            <input name='age' type='text' value='${result.data.age.toString()}' hidden/>
-            <input name='sex' type='text' value='${result.data.sex}' hidden/>
-            <input name='kids' type='text' value='${result.data.kids === false ? 'No' : 'Sí'}' hidden/>
-            <input name='state' type='text' value='${result.data.state}' hidden/>
-            <input name='municipality' type='text' value='${result.data.municipality}' hidden/>
-            <input name='typeOfResidence' type='text' value='${result.data.typeOfResidence}' hidden/>
-            <input name='facultyYear' type='text' value='${result.data.facultyYear}' hidden/>
-            <input name='civilStatus' type='text' value='${result.data.civilStatus}' hidden/>
-            <input name='email' type='email' value='${result.data.email}' hidden/>
-            <input name='occupation' type='text' value='${result.data.occupation}' hidden/>
-            <input name='semester' type='text' value='${result.data.semester}' hidden/>
-            <input name='worked' type='text' value='${result.data.worked === false ? 'No' : 'Sí'}' hidden/>
-            <input name='seriousWorkProblems' type='text' value='${result.data.seriousWorkProblems}' hidden/>
-            <input name='workDifficulties' type='text' value='${result.data.workDifficulties}' hidden/>
-            <input name='accessToInternetAndDevices_Doctor' type='text' value='${result.data.accessToInternetAndDevices_Doctor}' hidden/>
-            <input name='accessToInternetAndDevices_Student' type='text' value='${result.data.accessToInternetAndDevices_Student}' hidden/>
-            <input name='academicPerformance' type='text' value='${result.data.academicPerformance}' hidden/>
-            <input name='difficultiesToStudy' type='text' value='${result.data.difficultiesToStudy}' hidden/>
-            <input name='typeOfActivity' type='text' value='${result.data.typeOfActivity}' hidden/>
-            <input name='useOfMask' type='text' value='${result.data.useOfMask}' hidden/>
-            <input name='typeOfMask' type='text' value='${result.data.typeOfMask}' hidden/>
-            <input name='image' type='text' value='${imageBase64}' hidden/>
+        if (email === emailConfirm) {
+            // Render and Send Data
+            $('#form').removeClass('hidden');
+            $('#result').removeClass('hidden');
+            $('#yearAndName').html(`${surveyId}`);
+            $('.user').html(`
+                <input name='name' type='text' value='${result.data.name}' hidden/>
+                <input name='age' type='text' value='${result.data.age.toString()}' hidden/>
+                <input name='sex' type='text' value='${result.data.sex}' hidden/>
+                <input name='kids' type='text' value='${result.data.kids === false ? 'No' : 'Sí'}' hidden/>
+                <input name='state' type='text' value='${result.data.state}' hidden/>
+                <input name='municipality' type='text' value='${result.data.municipality}' hidden/>
+                <input name='typeOfResidence' type='text' value='${result.data.typeOfResidence}' hidden/>
+                <input name='facultyYear' type='text' value='${result.data.facultyYear}' hidden/>
+                <input name='civilStatus' type='text' value='${result.data.civilStatus}' hidden/>
+                <input name='email' type='email' value='${result.data.email}' hidden/>
+                <input name='occupation' type='text' value='${result.data.occupation}' hidden/>
+                <input name='semester' type='text' value='${result.data.semester}' hidden/>
+                <input name='worked' type='text' value='${result.data.worked === false ? 'No' : 'Sí'}' hidden/>
+                <input name='seriousWorkProblems' type='text' value='${result.data.seriousWorkProblems}' hidden/>
+                <input name='workDifficulties' type='text' value='${result.data.workDifficulties}' hidden/>
+                <input name='accessToInternetAndDevices_Doctor' type='text' value='${result.data.accessToInternetAndDevices_Doctor}' hidden/>
+                <input name='accessToInternetAndDevices_Student' type='text' value='${result.data.accessToInternetAndDevices_Student}' hidden/>
+                <input name='academicPerformance' type='text' value='${result.data.academicPerformance}' hidden/>
+                <input name='difficultiesToStudy' type='text' value='${result.data.difficultiesToStudy}' hidden/>
+                <input name='typeOfActivity' type='text' value='${result.data.typeOfActivity}' hidden/>
+                <input name='useOfMask' type='text' value='${result.data.useOfMask}' hidden/>
+                <input name='typeOfMask' type='text' value='${result.data.typeOfMask}' hidden/>
+                <input name='image' type='text' value='${imageBase64}' hidden/>
 
-            <input name='pt1_1' type='text' value='${result.data.pt1_1}' hidden/>
-            <input name='pt1_2' type='text' value='${result.data.pt1_2}' hidden/>
-            <input name='pt1_3' type='text' value='${result.data.pt1_3}' hidden/>
-            <input name='pt1_4' type='text' value='${result.data.pt1_4}' hidden/>
-            <input name='pt1_5' type='text' value='${result.data.pt1_5}' hidden/>
-            <input name='pt1_6' type='text' value='${result.data.pt1_6}' hidden/>
-            <input name='pt1_7' type='text' value='${result.data.pt1_7}' hidden/>
-            <input name='pt1_8' type='text' value='${result.data.pt1_8}' hidden/>
-            <input name='pt1_9' type='text' value='${result.data.pt1_9}' hidden/>
-            <input name='pt1_10' type='text' value='${result.data.pt1_10}' hidden/>
-            <input name='pt1_11' type='text' value='${result.data.pt1_11}' hidden/>
-            <input name='pt1_12' type='text' value='${result.data.pt1_12}' hidden/>
-            <input name='pt1_13' type='text' value='${result.data.pt1_13}' hidden/>
-            <input name='pt1_14' type='text' value='${result.data.pt1_14}' hidden/>
-            <input name='pt1_15' type='text' value='${result.data.pt1_15}' hidden/>
-            <input name='pt1_16' type='text' value='${result.data.pt1_16}' hidden/>
-            <input name='pt1_17' type='text' value='${result.data.pt1_17}' hidden/>
-            <input name='pt1_18' type='text' value='${result.data.pt1_18}' hidden/>
-            <input name='pt1_19' type='text' value='${result.data.pt1_19}' hidden/>
-            <input name='pt1_20' type='text' value='${result.data.pt1_20}' hidden/>
-            <input name='pt1_21' type='text' value='${result.data.pt1_21}' hidden/>
+                <input name='pt1_1' type='text' value='${result.data.pt1_1}' hidden/>
+                <input name='pt1_2' type='text' value='${result.data.pt1_2}' hidden/>
+                <input name='pt1_3' type='text' value='${result.data.pt1_3}' hidden/>
+                <input name='pt1_4' type='text' value='${result.data.pt1_4}' hidden/>
+                <input name='pt1_5' type='text' value='${result.data.pt1_5}' hidden/>
+                <input name='pt1_6' type='text' value='${result.data.pt1_6}' hidden/>
+                <input name='pt1_7' type='text' value='${result.data.pt1_7}' hidden/>
+                <input name='pt1_8' type='text' value='${result.data.pt1_8}' hidden/>
+                <input name='pt1_9' type='text' value='${result.data.pt1_9}' hidden/>
+                <input name='pt1_10' type='text' value='${result.data.pt1_10}' hidden/>
+                <input name='pt1_11' type='text' value='${result.data.pt1_11}' hidden/>
+                <input name='pt1_12' type='text' value='${result.data.pt1_12}' hidden/>
+                <input name='pt1_13' type='text' value='${result.data.pt1_13}' hidden/>
+                <input name='pt1_14' type='text' value='${result.data.pt1_14}' hidden/>
+                <input name='pt1_15' type='text' value='${result.data.pt1_15}' hidden/>
+                <input name='pt1_16' type='text' value='${result.data.pt1_16}' hidden/>
+                <input name='pt1_17' type='text' value='${result.data.pt1_17}' hidden/>
+                <input name='pt1_18' type='text' value='${result.data.pt1_18}' hidden/>
+                <input name='pt1_19' type='text' value='${result.data.pt1_19}' hidden/>
+                <input name='pt1_20' type='text' value='${result.data.pt1_20}' hidden/>
+                <input name='pt1_21' type='text' value='${result.data.pt1_21}' hidden/>
 
-            <input name='pt2_Intense_1' type='text' value='${result.data.pt2_Intense_1}' hidden/>
-            <input name='pt2_Intense_2' type='text' value='${result.data.pt2_Intense_2}' hidden/>
-            <input name='pt2_Moderated_1' type='text' value='${result.data.pt2_Moderated_1}' hidden/>
-            <input name='pt2_Moderated_2' type='text' value='${result.data.pt2_Moderated_2}' hidden/>
-            <input name='pt2_Hike_1' type='text' value='${result.data.pt2_Hike_1}' hidden/>
-            <input name='pt2_Hike_2' type='text' value='${result.data.pt2_Hike_2}' hidden/>
-            <input name='pt2_Seated_1' type='text' value='${result.data.pt2_Seated_1}' hidden/>
+                <input name='pt2_Intense_1' type='text' value='${result.data.pt2_Intense_1}' hidden/>
+                <input name='pt2_Intense_2' type='text' value='${result.data.pt2_Intense_2}' hidden/>
+                <input name='pt2_Moderated_1' type='text' value='${result.data.pt2_Moderated_1}' hidden/>
+                <input name='pt2_Moderated_2' type='text' value='${result.data.pt2_Moderated_2}' hidden/>
+                <input name='pt2_Hike_1' type='text' value='${result.data.pt2_Hike_1}' hidden/>
+                <input name='pt2_Hike_2' type='text' value='${result.data.pt2_Hike_2}' hidden/>
+                <input name='pt2_Seated_1' type='text' value='${result.data.pt2_Seated_1}' hidden/>
 
-            <input name='pt3_1' type='text' value='${result.data.pt3_1 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_2' type='text' value='${result.data.pt3_2 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_3' type='text' value='${result.data.pt3_3 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_4' type='text' value='${result.data.pt3_4 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_5' type='text' value='${result.data.pt3_5 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_6' type='text' value='${result.data.pt3_6 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_7' type='text' value='${result.data.pt3_7 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_8' type='text' value='${result.data.pt3_8 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_9' type='text' value='${result.data.pt3_9 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt3_10' type='text' value='${result.data.pt3_10 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_1' type='text' value='${result.data.pt3_1 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_2' type='text' value='${result.data.pt3_2 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_3' type='text' value='${result.data.pt3_3 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_4' type='text' value='${result.data.pt3_4 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_5' type='text' value='${result.data.pt3_5 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_6' type='text' value='${result.data.pt3_6 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_7' type='text' value='${result.data.pt3_7 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_8' type='text' value='${result.data.pt3_8 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_9' type='text' value='${result.data.pt3_9 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt3_10' type='text' value='${result.data.pt3_10 === false ? 'No' : 'Sí'}' hidden/>
 
-            <input name='pt4_1' type='text' value='${result.data.pt4_1 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt4_2' type='text' value='${result.data.pt4_2 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt4_3' type='text' value='${result.data.pt4_3 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt4_4' type='text' value='${result.data.pt4_4 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt4_5' type='text' value='${result.data.pt4_5 === false ? 'No' : 'Sí'}' hidden/>
-            <input name='pt4_6' type='text' value='${result.data.pt4_6 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_1' type='text' value='${result.data.pt4_1 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_2' type='text' value='${result.data.pt4_2 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_3' type='text' value='${result.data.pt4_3 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_4' type='text' value='${result.data.pt4_4 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_5' type='text' value='${result.data.pt4_5 === false ? 'No' : 'Sí'}' hidden/>
+                <input name='pt4_6' type='text' value='${result.data.pt4_6 === false ? 'No' : 'Sí'}' hidden/>
 
-            <input name='pt5_1' type='text' value='${result.data.pt5_1}' hidden/>
-            <input name='pt5_2' type='text' value='${result.data.pt5_2}' hidden/>
-            <input name='pt5_3' type='text' value='${result.data.pt5_3}' hidden/>
-            <input name='pt5_4' type='text' value='${result.data.pt5_4}' hidden/>
-            <input name='pt5_5' type='text' value='${result.data.pt5_5}' hidden/>
-            <input name='pt5_6' type='text' value='${result.data.pt5_6}' hidden/>
-            <input name='pt5_7' type='text' value='${result.data.pt5_7}' hidden/>
-            <input name='pt5_8' type='text' value='${result.data.pt5_8}' hidden/>
-        `);
+                <input name='pt5_1' type='text' value='${result.data.pt5_1}' hidden/>
+                <input name='pt5_2' type='text' value='${result.data.pt5_2}' hidden/>
+                <input name='pt5_3' type='text' value='${result.data.pt5_3}' hidden/>
+                <input name='pt5_4' type='text' value='${result.data.pt5_4}' hidden/>
+                <input name='pt5_5' type='text' value='${result.data.pt5_5}' hidden/>
+                <input name='pt5_6' type='text' value='${result.data.pt5_6}' hidden/>
+                <input name='pt5_7' type='text' value='${result.data.pt5_7}' hidden/>
+                <input name='pt5_8' type='text' value='${result.data.pt5_8}' hidden/>
+            `);
+        } else {
+            $('.center').html(
+                '<div class="alert alert-danger" role="alert">
+                    Tu dirección de correo electrónico no coincide con la primer que pusiste.
+                </div>'
+            );
+        }
     });
 
 $("#surveyElement").Survey({model: survey});

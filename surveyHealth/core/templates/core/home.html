@@ -25,31 +25,31 @@
     <body>
 
         {% if 'ok' in request.GET %}
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success center" role="alert">
               Tus resultados se han guardado exitosamente
             </div>
         {% endif %}
 
         {% if 'fail' in request.GET %}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger center" role="alert">
               Algo salió mal, por favor intenta de nuevo. Tu ID de registro no se ha guardado.
             </div>
         {% endif %}
 
         {% if 'alreadyUsed' in request.GET %}
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning center" role="alert">
               El correo ya está en uso. Tu ID de registro no se ha guardado.
             </div>
         {% endif %}
 
         {% if 'image' in request.GET %}
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger center" role="alert">
               La imagen es muy grande o está en un formato no permitido. Tu ID de registro no se ha guardado.
             </div>
         {% endif %}
 
         {% if 'name' in request.GET %}
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning center" role="alert">
               Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos. Tu ID de registro no se ha guardado.
             </div>
         {% endif %}

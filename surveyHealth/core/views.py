@@ -17,7 +17,7 @@ def results(request):
     ws['B2'] = 'REPORTE DE RESULTADOS'
     ws.merge_cells('B2:F2')
     # DATA
-    ws['B4'] = 'NOMBRE'
+    ws['B4'] = 'SIGLAS DE NOMBRE'
     ws['C4'] = 'ID'
     ws['D4'] = 'CORREO'
     ws['E4'] = 'EDAD'
@@ -97,7 +97,7 @@ def results(request):
     cont = 5
 
     for user in users:
-        ws.cell(row=cont,column=2).value = user.name
+        ws.cell(row=cont,column=2).value = (user.name).upper()
         ws.cell(row=cont,column=3).value = user.surveyId
         ws.cell(row=cont,column=4).value = user.email
         ws.cell(row=cont,column=5).value = user.age
@@ -182,32 +182,15 @@ def results(request):
 
     return response
 
-# Format the name with the first letter capitalized in each word.
-def formatName(name):
-    # Separate the name.
-    initialsName = name.split(' ')
-    # Capitalize de first letter of each word.
-    formated = []
-    for name in initialsName:
-        formated.append(name.lower().capitalize())
-    # Order the name
-    if len(formated) > 3:
-        formatedName = formated[0] + ' ' + formated[1] + ' ' + formated[2] + ' ' + formated[3]
-    else:
-        formatedName = formated[0] + ' ' + formated[1] + ' ' + formated[2]
-    return formatedName
-
 # Generate the ID for the new user.
 def getID(name, facultyYear):
     # Get the folio by knowing the number of users.
     folio = str(len(UserSurvey.objects.all()) + 1)
-    # Format the name and get its initials.
-    initials = formatName(name).split(' ')
     # Get the abreviation of the name.
-    if len(initials) > 3:
-        abrev = initials[2][0] + initials[3][0] + initials[0][0] + initials[1][0]
+    if len(name) > 3:
+        abrev = name[2] + name[3] + name[0] + name[1]
     else:
-        abrev = initials[1][0] + initials[2][0] + initials[0][0] + '0'
+        abrev = name[1] + name[2] + name[0] + '0'
     # Generate the id.
     surveyId = facultyYear + abrev + '_' + folio
     return surveyId
@@ -302,7 +285,7 @@ def getGeneralData(request):
 
     # Name.
     try:
-        name = formatName(request.POST.get('name', 'Sin resultado'))
+        name = (request.POST.get('name', 'Sin resultado')).upper()
     except:
         return redirect(reverse('home') + '?name')
 

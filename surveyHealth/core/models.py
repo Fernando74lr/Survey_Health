@@ -84,12 +84,12 @@ class UserSurvey(models.Model):
     pt5_6 = models.CharField(max_length=100, null=True, blank=False, verbose_name="¿Le ha perturbado o alterado no poder realizar actividades físicas fuera de casa (deporte, ejercicio físico, ir al campo, etc.)?")
     pt5_7 = models.CharField(max_length=100, null=True, blank=False, verbose_name="¿Le ha perturbado o alterado no poder salir de casa salvo para cosas muy necesarias?")
     pt5_8 = models.CharField(max_length=100, null=True, blank=False, verbose_name="¿Le ha perturbado o alterado no poder disponer de cosas que necesitaba?")
-    
+
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha y hora de creación")
 
     class Meta:
-        verbose_name = "Usuario"
-        verbose_name_plural = "Usuarios"
+        verbose_name = "Encuestado"
+        verbose_name_plural = "Encuestados"
         ordering = ["-created"]
 
     def __str__(self):
