@@ -8,8 +8,8 @@ Survey
     .StylesManager
     .applyTheme("modern");
 
-var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
-/*var json = {
+//var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
+var json = {
     "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Escudobuappositivo2.png",
     "locale": "es",
     "pages": [
@@ -1860,7 +1860,7 @@ var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
         ]
         }
     ]
-    };*/
+    };
 
 window.survey = new Survey.Model(json);
 
