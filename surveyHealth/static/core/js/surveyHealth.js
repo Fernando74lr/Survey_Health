@@ -10,7 +10,7 @@ Survey
 
 //var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
 var json = {
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Escudobuappositivo2.png",
+    "logo": "https://www.buap.mx/sites/default/files/styles/slider_general/public/banner_buap_20.png?itok=z8SCQ2dB",
     "locale": "es",
     "pages": [
         {
