@@ -1988,9 +1988,9 @@ survey
             `);
         } else {
             $('.center').html(
-                '<div class="alert alert-danger" role="alert">
+                `<div class='alert alert-danger' role='alert'>
                     Tu dirección de correo electrónico no coincide con la primer que pusiste.
-                </div>'
+                </div>`
             );
         }
     });
