@@ -54,11 +54,6 @@
             </div>
         {% endif %}
 
-        <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
-            <button type="button" id="buttonAdmin" onclick="admin()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Admin  <i class="fa fa-user" style="font-size:18px;"></i></button>
-            <br>
-        </div>
-
         <div class="banner_buap">
             <img id="banner" src="{% static 'core/img/banner_buap.png' %}" alt="banner_buap">
             <img id="logo" src="{% static 'core/img/buap_logo.png' %}" alt="banner_buap">
@@ -73,7 +68,13 @@
                 <div class="hidden" id="result">
                     <div class="alert alert-success" id="surveyId" role="alert">
                         <h2>Tu ID de registro es: <b><span id="yearAndName"></span>{{numUsers}}</b></h2><br>
-                    </div><br>
+                    </div>
+                    <h2>Sus resultados pueden tardar hasta un mes, gracias por su paciencia.</h2><br>
+                    <h3>Para cualquier duda, favor de contactar a:</h3>
+                    <p><b>D.C. Martha Elba González Mejía</b>.<br>WhatsApp: 22-25-24-44-97. Email: elba.gonzalezmejia@gmail.com</p>
+                    <p><b>D.C Ricardo Pérez Fuentes</b>.<br>WhatsApp: 22-21-94-57-58. Email: rycardoperez@hotmail.com</p>
+                    <p><b>Denilson Xipe Pacheco Tobón</b>.<br>WhatsApp: 22-26-70-05-65. Email: xipept@gmail.com</p>
+                    <p><b>Claudia Arellano Ramírez</b>.<br>Email: clau_a_r@outlook.com</p><br>
                 </div>
             {% endif %}
             <!-- Form -->
@@ -81,7 +82,7 @@
                 {% csrf_token %}
                 <!-- User's data -->
                 <div class="user"></div>
-                <input type="submit" id="send" class="btn btn-primary" value="    Guardar    ">
+                <input type="submit" id="send" class="btn btn-primary" value="    Finalizar    ">
             </form>
         </div>
 

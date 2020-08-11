@@ -378,6 +378,31 @@ var json = {
         "placeHolder": "Introduzca un correo electrónico válido que use con frecuencia"
         },
         {
+        "type": "html",
+        "name": "emailMessageConfirmation",
+        "visibleIf": "{name} notempty",
+        "html": {
+            "default": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>",
+            "es": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>"
+        }
+        },
+        {
+        "type": "text",
+        "name": "emailConfirmation",
+        "visibleIf": "{name} notempty",
+        "title": {
+            "default": "Correo electrónico",
+            "es": "Confirmación de correo electrónico"
+        },
+        "hideNumber": true,
+        "isRequired": true,
+        "inputType": "email",
+        "placeHolder": {
+            "default": "Introduzca un correo electrónico válido que use con frecuencia",
+            "es": "Introduzca nuevamente su correo electrónico"
+        }
+        },
+        {
         "type": "radiogroup",
         "name": "occupation",
         "visibleIf": "{name} notempty",
@@ -1826,34 +1851,8 @@ var json = {
         },
         {
         "type": "html",
-        "name": "emailMessageConfirmation",
-        "visibleIf": "{pt5_8} notempty",
-        "html": {
-            "default": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>",
-            "es": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>"
-        }
-        }
-        ,
-        {
-        "type": "text",
-        "name": "emailConfirmation",
-        "visibleIf": "{pt5_8} notempty",
-        "title": {
-            "default": "Correo electrónico",
-            "es": "Confirmación de correo electrónico"
-        },
-        "hideNumber": true,
-        "isRequired": true,
-        "inputType": "email",
-        "placeHolder": {
-            "default": "Introduzca un correo electrónico válido que use con frecuencia",
-            "es": "Introduzca nuevamente su correo electrónico"
-        }
-        },
-        {
-        "type": "html",
         "name": "question1",
-        "visibleIf": "{emailConfirmation} notempty",
+        "visibleIf": "{pt5_8} notempty",
         "html": {
             "default": "<b style='font-size:30px;'>La encuesta ha terminado. Muchas gracias por el tiempo invertido. En breve se le mostrará el ID con el que fue registrado junto con su número de folio.</b>",
             "es": "<b style='font-size:30px;'>La encuesta ha terminado. Muchas gracias por el tiempo invertido. En breve se le mostrará el ID con el que fue registrado.</b>"
@@ -1992,7 +1991,7 @@ survey
                     <small>Por favor asegúrate de poner el mismo correo.</small>
                 </div>
                 <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
-                    <button type="button" id="buttonHome" onclick="home()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Inicio</button>
+                    <button type="button" id="buttonHome" onclick="home()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">  Inicio  </button>
                 </div>
                 <br>
                 `
