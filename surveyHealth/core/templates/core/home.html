@@ -26,37 +26,42 @@
 
         {% if 'ok' in request.GET %}
             <div class="alert alert-success center" role="alert">
-              Tus resultados se han guardado exitosamente
+              Tu registro ha concluido exitosamente.
             </div>
         {% endif %}
 
         {% if 'fail' in request.GET %}
             <div class="alert alert-danger center" role="alert">
-              Algo salió mal, por favor intenta de nuevo. Tu ID de registro no se ha guardado.
+              Algo salió mal, por favor intenta de nuevo.
             </div>
         {% endif %}
 
         {% if 'alreadyUsed' in request.GET %}
             <div class="alert alert-warning center" role="alert">
-              El correo ya está en uso. Tu ID de registro no se ha guardado.
+              El correo ya está en uso.
             </div>
         {% endif %}
 
         {% if 'image' in request.GET %}
             <div class="alert alert-danger center" role="alert">
-              La imagen es muy grande o está en un formato no permitido. Tu ID de registro no se ha guardado.
+              La imagen es muy grande o está en un formato no permitido.
             </div>
         {% endif %}
 
         {% if 'name' in request.GET %}
             <div class="alert alert-warning center" role="alert">
-              Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos. Tu ID de registro no se ha guardado.
+              Por favor, escribe correctamente tu nombre. Verifica que esté completo, sin dobles espacios o símbolos.
             </div>
         {% endif %}
 
         <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
-            <button type="button" id="buttonResults" onclick="results()" class="btn btn-success" style="margin-right:10px;border-radius:1.214em!important;">Results  <i class="fa fa-inbox" style="font-size:18px;"></i></button>
+            <button type="button" id="buttonAdmin" onclick="admin()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Admin  <i class="fa fa-user" style="font-size:18px;"></i></button>
             <br>
+        </div>
+
+        <div class="banner_buap">
+            <img id="banner" src="{% static 'core/img/banner_buap.png' %}" alt="banner_buap">
+            <img id="logo" src="{% static 'core/img/buap_logo.png' %}" alt="banner_buap">
         </div>
 
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>

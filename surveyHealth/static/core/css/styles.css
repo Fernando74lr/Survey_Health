@@ -39,3 +39,40 @@
     justify-content: center;
     text-align: center;
 }
+
+.banner_buap {
+    display:block;
+    justify-content:center;
+    text-align:center;
+}
+
+#banner {
+    width: 1160px;
+    height: 518px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#logo {
+    width: 350px;
+    height: 350px;
+    margin-top: 30px;
+}
+
+@media only screen and (max-width: 1025px) {
+    #banner {
+        width: 800px;
+        height: 450px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #banner {
+        width: 380px;
+        height: 200px;
+    }
+    #logo {
+        width: 250px;
+        height: 250px;
+    }
+}

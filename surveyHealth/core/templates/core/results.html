@@ -26,23 +26,12 @@
 <body>
 
     <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
-        <button type="button" id="buttonResults" onclick="results()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Home  <i class="fa fa-home" style="font-size:18px;"></i></button>
+        <h1>Reporte de Resultados.</h1>
         <br>
+        <button type="button" id="buttonResults" onclick="results()" class="btn btn-success" style="margin-right:10px;border-radius:1.214em!important;">Results  <i class="fa fa-inbox" style="font-size:18px;"></i></button>
     </div>
-
-    <br><br>
-    <div id="container" style="width: 50%;display:inline-flexbox;justify-content:center;text-align:center;margin-left:auto;margin-right:auto;">
-        <h1>Results</h1>
-        <canvas id="myChart"></canvas>
-    </div>
-
-    <script>
-        let emails = "{{ emails }}".split(',');
-        emails.pop()
-        console.log(emails);
-    </script>
 
     <script type="text/javascript" src="{% static 'core/js/index.js' %}"></script>
-    
+
 </body>
 </html>

@@ -11,9 +11,6 @@ Survey
 
 //var json = {surveyId: '125f8b76-2eea-4c7b-9891-428c2abef506'}
 var json = {
-    "logo": "https://www.buap.mx/sites/default/files/styles/slider_general/public/banner_buap_20.png?itok=z8SCQ2dB",
-    "logoWidth": 650,
-    "logoHeight": 300,
     "locale": "es",
     "pages": [
         {
@@ -24,7 +21,7 @@ var json = {
         "name": "question2",
         "html": {
             "default": "<h1>BENEMÉRITA UNIVERSIDAD AUTÓNOMA DE PUEBLA.</h1>\n<br><h2>CONSENTIMIENTO INFORMADO (ADULTOS).</h2>\n<br>\n<div id='consentId'>\n<h3>Nombre del estudio</h3>\n<p>Evaluación de los niveles de depresión y ansiedad por confinamiento, en estudiantes universitarios y docentes de la FMBUAP, relacionada a la pandemia de COVID-19.</p>\n<h3>Número de registro</h3>\n<p>REGISTRO VIEP PENDIENTE.</p>\n<h3>Justificación y objetivo del estudio</h3>\n<p>La situación a nivel mundial ocasionada por la enfermedad de COVID-19, ha generado un\ngran impacto en las personas, el presente estudio pretende evaluar los niveles de depresión\ny ansiedad, en estudiantes universitarios y docentes de la FMBUAP , debido al\nconfinamiento relacionada a la pandemia.</p>\n<h3>Procedimientos</h3>\n<p>Se aplicarán instrumentos que evalúan ansiedad, depresión y estrés, actividad física, conductas asociadas al confinamiento y medidas preventivas.</p>\n<h3>Posibles riesgos y molestias</h3>\n<p>Vulnerabilidad al responder con honestidad las preguntas de los instrumentos aplicados. Hastío al contestar las preguntas.</p>\n<h3>Posibles beneficios que recibirá al participar en el estudio</h3>\n<p>El participante conocerá sus niveles de ansiedad, estrés y depresión, de así conceder, se\npodrá canalizar al Departamento de Psiquiatría de la Facultad de medicina para su\nevaluación y posterior seguimiento buscando la mejoría del estado de salud mental del encuestado y/o revertir daños a la misma.</p>\n<h3>Confidencialidad</h3>\n<p>La información de los resultados es estrictamente confidencial y estará resguardada por el equipo de salud. Será utilizada para este único estudio de investigación.</p>\n<h3>Participación o retiro</h3>\n<p>Usted podrá retirarse sin ninguna consecuencia en el momento que lo decida (cuestionarios incompletos serán eliminados del estudio).</p>\n<h3>Privacidad y confidencialidad</h3>\n<p>Nuestra responsabilidad y obligación como investigadores será el respetar su privacidad y\nmantener la confidencialidad de la información proporcionada que se derive de su participación en el estudio. Siguiendo el Artículo 14.1 de la ley federal de protección de\ndatos personales y siguiendo los lineamientos de la convención de Helsinki.</p>\n<h3>En caso de colección de material biológico (si aplica)</h3>\n<p>No colectaremos material biológico.</p>\n</div>\n<h3>En caso de dudas o aclaraciones relacionadas con el estudio podrá dirigirse a:</h3><br>\n<h4>Investigador Responsable</h4>\n<p><u>D.C. Martha Elba González Mejía</u>. Departamento de Genética\nde la Facultad de Medicina, Benemérita Universidad Autónoma de Puebla. Matrícula BUAP: 100519099. WhatsApp: <a>22-25-24-44-97</a>. Email: <a>elba.gonzalezmejia@gmail.com</a></p>\n<h4>Colaboradores</h4>\n<p><u>D.C Ricardo Pérez Fuentes</u>. Departamento de Metodología de la\ninvestigación de la Facultad de Medicina, Benemérita Universidad Autónoma de Puebla. Matrícula BUAP: 100170644. WhatsApp: <a>22-21-94-57-58</a>. Email: <a>rycardoperez@hotmail.com</a></p>\n<p><u>Denilson Xipe Pacheco Tobón</u>. Alumno de la Licenciatura en Medicina de la Facultad de Medicina, Benemérita Universidad Autónoma de Puebla. Matricula: 201612501. WhatsApp: <a>22-26-70-05-65</a>. Email: <a>xipept@gmail.com</a></p>\n<p><u>Claudia Arellano Ramírez</u>. Alumna de la Licenciatura en Medicina de la de Facultad de Medicina, Benemérita Universidad Autónoma de Puebla. Matricula: 201605314. Email: <a>clau_a_r@outlook.com</a></p>",
-            "es": "<h1>BENEMÉRITA UNIVERSIDAD AUTÓNOMA DE PUEBLA.</h1>\n<br>\n<h3>Esta es una invitación a participar en un proyecto de investigación, que se está desarrollando en la Facultad de Medicina BUAP, por parte de alumnos y docentes. Esta participación se desarrollará a  través de un cuestionario en línea que nos permita recopilar información valiosa sobre nuestra población estudiantil y docente.</h3>"
+            "es": "<h1>BENEMÉRITA UNIVERSIDAD AUTÓNOMA DE PUEBLA.</h1>\n<br>\n<h3>Esta es una invitación a participar en un proyecto de investigación que está desarrollando la Facultad de Medicina BUAP, por parte de alumnos y docentes. Esta participación se realizará a través de un cuestionario en línea que nos permitirá recopilar información valiosa sobre nuestra población estudiantil y docente.</h3>"
         }
         },
         {
@@ -183,10 +180,6 @@ var json = {
             {
             "value": "Casado (a)",
             "text": "Casado (a)"
-            },
-            {
-            "value": "Divorciado (a)",
-            "text": "Divorciado (a)"
             },
             {
             "value": "Unión Libre",
@@ -1511,35 +1504,31 @@ var json = {
         "name": "typeOfMask",
         "visibleIf": "{pt3_10} notempty and {useOfMask} anyof ['other', 'item2', 'Siempre', 'Casi siempre']",
         "title": "Seleccione qué tipo de cubrebocas utiliza",
-        "description": {
-            "es": "(Quirúrgico, Neopreno, KN95, Tela)"
-        },
         "isRequired": true,
         "choices": [
             {
             "value": "Quirúrgico",
             "text": {
-            "default": "Tela",
             "es": "Quirúrgico"
             },
-            "imageLink": "https://resources.claroshop.com/medios-plazavip/mkt/5e9f69756401d_cubre-azul-1jpg.jpg"
+            "imageLink": "https://raw.githubusercontent.com/Fernando74lr/Survey_Health/master/surveyHealth/static/core/img/quir%C3%BArgico.jpg"
             },
             {
             "value": "Neopreno",
             "text": "Neopreno",
-            "imageLink": "https://www.soriana.com/medias/sys_master/images/images/h15/h4e/9120655573022/7506392815510-A-300x300.jpg"
+            "imageLink": "https://raw.githubusercontent.com/Fernando74lr/Survey_Health/master/surveyHealth/static/core/img/neopreno.jpg"
             },
             {
             "value": "KN95",
             "text": "KN95",
-            "imageLink": "https://resources.claroshop.com/medios-plazavip/mkt/5ea7503991c23_300109-800-2jpg.jpg"
+            "imageLink": "https://raw.githubusercontent.com/Fernando74lr/Survey_Health/master/surveyHealth/static/core/img/KN95.jpg"
             },
             {
             "value": "Tela",
             "text": {
             "es": "Tela"
             },
-            "imageLink": "https://images-na.ssl-images-amazon.com/images/I/71LYJPLi-uL._AC_UL320_SR214,320_.jpg"
+            "imageLink": "https://raw.githubusercontent.com/Fernando74lr/Survey_Health/master/surveyHealth/static/core/img/tela.jpg"
             }
         ]
         },
@@ -1836,6 +1825,16 @@ var json = {
         ]
         },
         {
+        "type": "html",
+        "name": "emailMessageConfirmation",
+        "visibleIf": "{pt5_8} notempty",
+        "html": {
+            "default": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>",
+            "es": "<h2>Por favor confirme el correo electrónico al que le serán enviados sus resultados (pueden tardar hasta un mes, gracias por su paciencia).</h2>"
+        }
+        }
+        ,
+        {
         "type": "text",
         "name": "emailConfirmation",
         "visibleIf": "{pt5_8} notempty",
@@ -1989,8 +1988,14 @@ survey
         } else {
             $('.center').html(
                 `<div class='alert alert-danger' role='alert'>
-                    Tu dirección de correo electrónico no coincide con la primer que pusiste.
-                </div>`
+                    Tu dirección de correo electrónico no coincide con la primera que pusiste.<br>
+                    <small>Por favor asegúrate de poner el mismo correo.</small>
+                </div>
+                <div class="buttons_panel" style="margin-top:10px;display:flex;justify-content:center;text-align:center;">
+                    <button type="button" id="buttonHome" onclick="home()" class="btn btn-primary" style="margin-right:10px;border-radius:1.214em!important;">Inicio</button>
+                </div>
+                <br>
+                `
             );
         }
     });

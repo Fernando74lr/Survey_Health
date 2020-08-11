@@ -9,7 +9,11 @@ import base64
 def home(request):
     return render(request, 'core/home.html', {'numUsers': str(len(UserSurvey.objects.all()) + 1)})
 
-# Results.
+# Results view.
+def res(request):
+    return render(request, 'core/results.html')
+
+# Get the results in excel.
 def results(request):
     users = UserSurvey.objects.all()
     wb = Workbook()
