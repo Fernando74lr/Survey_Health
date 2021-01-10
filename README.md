@@ -1,2 +1,2 @@
 # Survey_Health
-This is a little project that implements an intelligent survey to collect data in order to make a research about health and get statistical results.
+### This is a small project that implements a smart survey to collect data in order to conduct health research by BUAP and obtain statistical results.
