@@ -1,5 +1,5 @@
 Pillow==7.1.2 
-django==3.0.7 
+django==3.0.12 
 openpyxl==3.0.4
 pylint==2.5.3 
 pylint-django==2.0.15 
